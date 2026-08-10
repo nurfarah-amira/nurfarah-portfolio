@@ -266,6 +266,24 @@ section h2 {
     border-color: #00C2FF;
 }
 
+.project-card,
+.project-card:visited,
+.project-card:hover,
+.project-card:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+.project-card h3,
+.project-card h3:visited,
+.project-card h3:hover,
+.project-card p,
+.project-card p:visited,
+.project-card p:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
 .project-image {
     height: 220px;
     background-color: #0F172A;
