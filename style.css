@@ -867,8 +867,8 @@ footer p:last-child {
 
 .tech-badges {
     position: absolute;
-    right: 12%;
-    top: 30%;
+    right: 7%;
+    top: 32%;
     width: 280px;
     height: 250px;
     pointer-events: none;
@@ -1006,6 +1006,17 @@ footer p:last-child {
         font-size: 32px;
     }
 
+    /* About Stats */
+    .about-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 25px;
+    }
+
+    .about-stat {
+    padding: 15px;
+    }
+    
     /* Skills */
     .skills-grid {
         grid-template-columns: 1fr;
