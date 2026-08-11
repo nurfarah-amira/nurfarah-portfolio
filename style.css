@@ -88,9 +88,37 @@ section h2 {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+#home::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: rgba(0, 194, 255, 0.08);
+    border-radius: 50%;
+    filter: blur(100px);
+    top: 10%;
+    right: -150px;
+    pointer-events: none;
+}
+
+#home::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
 }
 
 .hero-content {
+    position: relative;
+    z-index: 2;
     max-width: 750px;
 }
 
@@ -103,15 +131,27 @@ section h2 {
 }
 
 .hero-content h1 {
-    font-size: 70px;
+    font-size: 64px;
+    font-weight: 800;
+    margin: 10px 0;
     line-height: 1.1;
-    margin-bottom: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #FFFFFF,
+        #00C2FF
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero-content h2 {
-    font-size: 32px;
+    font-size: 28px;
     color: #00C2FF;
-    margin-bottom: 20px;
+    margin: 15px 0;
+    font-weight: 600;
 }
 
 .hero-description {
@@ -129,31 +169,39 @@ section h2 {
 }
 
 .btn {
-    display: inline-block;
-    padding: 14px 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 24px;
     border-radius: 8px;
     text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .primary-btn {
-    background-color: #00C2FF;
+    background: #00C2FF;
     color: #0F172A;
+    border: 1px solid #00C2FF;
 }
 
 .primary-btn:hover {
     transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 194, 255, 0.25);
 }
 
 .secondary-btn {
-    border: 1px solid #00C2FF;
-    color: #00C2FF;
+    background: transparent;
+    color: #FFFFFF;
+    border: 1px solid #334155;
 }
 
 .secondary-btn:hover {
-    background-color: #00C2FF;
-    color: #0F172A;
+    transform: translateY(-3px);
+    border-color: #00C2FF;
+    color: #00C2FF;
 }
 
 /* About Section */
