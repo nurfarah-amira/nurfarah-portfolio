@@ -986,7 +986,7 @@ footer p:last-child {
 
 /* Mobile Improvements */
 
-@media (max-width: 480px) {
+@media (max-width: 500px) {
 
     header {
         padding: 18px 5%;
