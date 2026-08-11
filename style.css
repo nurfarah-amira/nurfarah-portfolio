@@ -855,6 +855,43 @@ footer p:last-child {
     box-shadow: 0 8px 30px rgba(0, 194, 255, 0.2);
 }
 
+/* About Stats */
+
+.about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.about-stat {
+    padding: 18px 15px;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid #334155;
+    border-radius: 10px;
+    transition: 0.3s ease;
+}
+
+.about-stat strong {
+    display: block;
+    color: #00C2FF;
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.about-stat span {
+    display: block;
+    color: #94A3B8;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.about-stat:hover {
+    transform: translateY(-5px);
+    border-color: #00C2FF;
+    box-shadow: 0 8px 25px rgba(0, 194, 255, 0.08);
+}
+
 @keyframes floatBadge {
     0%, 100% {
         transform: translateY(0);
