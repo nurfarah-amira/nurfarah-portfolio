@@ -95,13 +95,28 @@ section h2 {
 #home::before {
     content: "";
     position: absolute;
-    width: 500px;
-    height: 500px;
-    background: rgba(0, 194, 255, 0.08);
+    width: 420px;
+    height: 420px;
+    background: rgba(0, 194, 255, 0.10);
     border-radius: 50%;
-    filter: blur(100px);
-    top: 10%;
-    right: -150px;
+    filter: blur(90px);
+    top: 18%;
+    right: 8%;
+    pointer-events: none;
+}
+
+#home .tech-badges::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border: 1px solid rgba(0, 194, 255, 0.12);
+    border-radius: 50%;
+    top: 35px;
+    left: 45px;
+    box-shadow:
+        0 0 40px rgba(0, 194, 255, 0.08),
+        inset 0 0 40px rgba(0, 194, 255, 0.05);
     pointer-events: none;
 }
 
