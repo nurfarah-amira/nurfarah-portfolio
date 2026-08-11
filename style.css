@@ -34,6 +34,22 @@ nav {
     font-weight: bold;
     color: #00C2FF;
     letter-spacing: 1px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #FFFFFF;
+}
+
+.logo strong {
+    color: #00C2FF;
+    font-weight: 800;
+    transition: 0.3s ease;
+}
+
+.logo:hover strong {
+    text-shadow: 0 0 15px rgba(0, 194, 255, 0.6);
 }
 
 .nav-links {
