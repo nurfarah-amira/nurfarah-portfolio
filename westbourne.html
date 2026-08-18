@@ -7,82 +7,1075 @@
     <title>Westbourne Smokehouse Cafe System | Nurfarah Amirah</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =====================================================
+           PROJECT SCREENSHOTS
+        ===================================================== */
+
+        .project-gallery {
+            margin-top: 55px;
+        }
+
+        .project-gallery h2 {
+            margin-bottom: 25px;
+        }
+
+        /* Carousel */
+
+        .screenshot-carousel {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .screenshot-track {
+            display: flex;
+            gap: 22px;
+
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+
+            padding: 10px 5px 20px;
+
+            flex: 1;
+
+            scrollbar-width: none;
+        }
+
+        .screenshot-track::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        /* Screenshot Card */
+
+        .screenshot-card {
+            position: relative;
+
+            flex: 0 0 365px;
+            height: 230px;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            cursor: pointer;
+
+            scroll-snap-align: start;
+
+            background: #0f172a;
+
+            border: 1px solid rgba(0, 200, 255, 0.55);
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.15);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+
+        .screenshot-card:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 30px rgba(0, 200, 255, 0.12);
+        }
+
+
+        .screenshot-card img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition:
+                transform 0.4s ease;
+        }
+
+
+        .screenshot-card:hover img {
+
+            transform: scale(1.04);
+        }
+
+
+        /* Screenshot Label */
+
+        .screenshot-label {
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 14px 16px;
+
+            color: white;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(15, 23, 42, 0.95)
+                );
+
+            opacity: 0;
+
+            transform: translateY(10px);
+
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
+        }
+
+
+        .screenshot-card:hover .screenshot-label {
+
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+
+        /* =====================================================
+           CAROUSEL ARROWS
+        ===================================================== */
+
+        .carousel-btn {
+
+            width: 50px;
+            height: 50px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #06243a;
+
+            color: #20d9e8;
+
+            font-size: 23px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            z-index: 5;
+
+            transition:
+                background 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s ease;
+
+            box-shadow:
+                0 5px 18px rgba(0, 0, 0, 0.25);
+        }
+
+
+        .carousel-btn:hover {
+
+            background: #0b3b5c;
+
+            color: #5cebf2;
+
+            transform: scale(1.08);
+        }
+
+
+        .carousel-btn.prev {
+
+            margin-right: -25px;
+        }
+
+
+        .carousel-btn.next {
+
+            margin-left: -25px;
+        }
+
+
+        /* =====================================================
+           VIEW ALL BUTTON
+        ===================================================== */
+
+        .view-all-container {
+
+            display: flex;
+
+            justify-content: center;
+
+            margin-top: 28px;
+        }
+
+
+        .view-all-btn {
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 13px 28px;
+
+            border-radius: 30px;
+
+            border: 1px solid #20d9e8;
+
+            background: transparent;
+
+            color: #20d9e8;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition:
+                background 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s ease;
+        }
+
+
+        .view-all-btn:hover {
+
+            background: #20d9e8;
+
+            color: #0f172a;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================================================
+   WESTBOURNE VIEW ALL
+   SAME STYLE AS NEZUCAT + SMARTAI
+========================================================= */
+
+.all-screenshots-modal {
+    display: none;
+
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+
+    background: rgba(5, 10, 22, 0.96);
+
+    overflow-y: auto;
+
+    padding: 70px 5%;
+}
+
+.all-screenshots-modal.active {
+    display: block;
+}
+
+
+/* HEADER */
+
+.all-screenshots-header {
+    max-width: 1200px;
+
+    margin: 0 auto 35px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.all-screenshots-header h2 {
+    margin: 0;
+
+    color: #08bfff;
+
+    font-size: 32px;
+}
+
+
+/* CLOSE BUTTON */
+
+.all-screenshots-close {
+    width: 44px;
+    height: 44px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #09243a;
+
+    color: #08bfff;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.all-screenshots-close:hover {
+    background: #08bfff;
+    color: #0d1528;
+}
+
+
+/* GRID */
+
+.all-screenshots-grid {
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 24px;
+}
+
+
+/* CARD */
+
+.all-screenshot-card {
+    background: #111c31;
+
+    border: 1px solid
+        rgba(8, 191, 255, 0.35);
+
+    border-radius: 18px;
+
+    padding: 12px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.all-screenshot-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #08bfff;
+
+    box-shadow:
+        0 0 22px
+        rgba(8, 191, 255, 0.18);
+}
+
+
+/* IMAGE */
+
+.all-screenshot-card img {
+    width: 100%;
+
+    height: 190px;
+
+    object-fit: cover;
+
+    display: block;
+
+    border-radius: 12px;
+}
+
+
+/* LABEL */
+
+.all-screenshot-label {
+    padding:
+        12px 5px 5px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .all-screenshots-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .all-screenshots-modal {
+        padding:
+            50px 20px;
+    }
+
+    .all-screenshots-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .all-screenshots-header h2 {
+        font-size: 24px;
+    }
+
+}
+
+
+        /* =====================================================
+           FULLSCREEN IMAGE
+        ===================================================== */
+
+        .image-modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, 0.92);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            z-index: 10000;
+
+            padding: 30px;
+        }
+
+
+        .image-modal.show {
+
+            display: flex;
+        }
+
+
+        .image-modal img {
+
+            max-width: 92%;
+
+            max-height: 88vh;
+
+            object-fit: contain;
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 15px 50px rgba(0, 0, 0, 0.5);
+
+            animation:
+                imageZoom 0.25s ease;
+        }
+
+
+        .close-btn {
+
+            position: absolute;
+
+            top: 20px;
+            right: 30px;
+
+            color: white;
+
+            font-size: 40px;
+
+            font-weight: 300;
+
+            cursor: pointer;
+
+            z-index: 10001;
+
+            transition: 0.2s ease;
+        }
+
+
+        .close-btn:hover {
+
+            transform: scale(1.1);
+
+            color: #20d9e8;
+        }
+
+
+        @keyframes imageZoom {
+
+            from {
+
+                transform: scale(0.92);
+
+                opacity: 0;
+            }
+
+            to {
+
+                transform: scale(1);
+
+                opacity: 1;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .screenshot-card {
+
+                flex: 0 0 330px;
+
+                height: 210px;
+            }
+
+
+            .all-screenshots-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .screenshot-card {
+
+                flex: 0 0 280px;
+
+                height: 180px;
+            }
+
+
+            .carousel-btn {
+
+                width: 42px;
+                height: 42px;
+
+                font-size: 19px;
+            }
+
+
+            .carousel-btn.prev {
+
+                margin-right: -21px;
+            }
+
+
+            .carousel-btn.next {
+
+                margin-left: -21px;
+            }
+
+
+            .screenshot-label {
+
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+
+
+            .gallery-modal {
+
+                padding: 12px;
+            }
+
+
+            .gallery-modal-content {
+
+                padding: 25px 18px;
+            }
+
+
+            .gallery-modal-title {
+
+                font-size: 27px;
+
+                padding-right: 50px;
+            }
+
+
+            .all-screenshots-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .gallery-item img {
+
+                height: 200px;
+            }
+        }
+
+		/* =========================================================
+   WESTBOURNE VIEW ALL
+   EXACT STYLE LIKE NEZUCAT + SMARTAI
+   ========================================================= */
+
+/* Modal background */
+.gallery-modal {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(5, 10, 22, 0.96);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+
+    padding: 20px;
+}
+
+.gallery-modal.show {
+    display: flex;
+}
+
+
+/* Main modal box */
+.gallery-modal-content {
+    position: relative;
+
+    width: min(1200px, 94vw);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    box-sizing: border-box;
+
+    padding: 30px;
+
+    background: #0f172a;
+
+    border: 1px solid rgba(0, 200, 255, 0.55);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45);
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #00c8ff
+        #0f172a;
+}
+
+
+/* Chrome scrollbar */
+.gallery-modal-content::-webkit-scrollbar {
+    width: 7px;
+}
+
+.gallery-modal-content::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+.gallery-modal-content::-webkit-scrollbar-thumb {
+    background: #00c8ff;
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.gallery-modal-title {
+    margin: 0 0 25px;
+
+    color: #00c8ff;
+
+    font-size: 32px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+.gallery-close {
+    position: absolute;
+
+    top: 18px;
+    right: 20px;
+
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid #00c8ff;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #00c8ff;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.3s ease;
+}
+
+.gallery-close:hover {
+    background: #00c8ff;
+
+    color: #071426;
+
+    transform: scale(1.08);
+}
+
+
+/* =========================================================
+   ALL SCREENSHOTS GRID
+   ========================================================= */
+
+.all-screenshots-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/* =========================================================
+   GALLERY CARD
+   ========================================================= */
+
+.gallery-item {
+    position: relative;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    border: 1px solid
+        rgba(0, 200, 255, 0.35);
+
+    border-radius: 14px;
+
+    background: #111c31;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 30px
+        rgba(0, 200, 255, 0.15);
+}
+
+
+/* =========================================================
+   GALLERY IMAGE
+   ========================================================= */
+
+.gallery-item img {
+    display: block;
+
+    width: 100%;
+
+    height: 190px;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   GALLERY LABEL
+   ========================================================= */
+
+.gallery-item-label {
+    padding: 12px 14px;
+
+    color: #ffffff;
+
+    background: #111c31;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .all-screenshots-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .gallery-modal-content {
+        padding: 24px;
+    }
+
+    .gallery-modal-title {
+        font-size: 27px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .gallery-modal {
+        padding: 20px 12px;
+    }
+
+    .gallery-modal-content {
+        width: 96vw;
+
+        padding: 18px;
+
+        max-height: 94vh;
+    }
+
+    .all-screenshots-grid {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+    .gallery-item img {
+        height: 210px;
+    }
+
+    .gallery-modal-title {
+        font-size: 23px;
+    }
+}
+    </style>
+
 </head>
+
 
 <body>
 
+
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
+
     <header>
+
         <nav>
-            <div class="logo">NURFARAH AMIRAH</div>
+
+            <div class="logo">
+
+                <span>NURFARAH</span>
+
+                <strong>AMIRAH</strong>
+
+            </div>
 
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#projects">
+                        Projects
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#contact">
+                        Contact
+                    </a>
+                </li>
+
             </ul>
+
         </nav>
+
     </header>
 
+
+    <!-- =====================================================
+         MAIN
+    ===================================================== -->
 
     <main>
 
         <section class="project-detail">
 
-            <p class="section-label">PROJECT DETAILS</p>
 
-            <h1>Westbourne Smokehouse Cafe System</h1>
+            <!-- PROJECT LABEL -->
 
-            <p class="project-detail-intro">
-                A web-based cafe management system developed to support
-                online ordering, menu management, reservations, payments,
-                inventory, and customer services.
+            <p class="section-label">
+                PROJECT DETAILS
             </p>
 
 
+            <!-- PROJECT TITLE -->
+
+            <h1>
+                Westbourne Smokehouse Cafe System
+            </h1>
+
+
+            <!-- PROJECT INTRO -->
+
+            <p class="project-detail-intro">
+
+                A web-based cafe management system developed to support
+                online ordering, menu management, reservations, payments,
+                inventory, and customer services.
+
+            </p>
+
+
+            <!-- PROJECT COVER -->
+
             <img
-                src="westbourne.png"
+                src="images/westbourne.png"
                 alt="Westbourne Smokehouse Cafe System"
                 class="project-detail-image"
             >
 
 
+            <!-- =================================================
+                 PROJECT CONTENT
+            ================================================= -->
+
             <div class="project-detail-content">
 
+
+                <!-- PROJECT OVERVIEW -->
+
                 <div>
-                    <h2>Project Overview</h2>
+
+                    <h2>
+                        Project Overview
+                    </h2>
 
                     <p>
+
                         Westbourne Smokehouse Cafe System was developed as
                         a web-based system to support the daily operations
                         of a cafe and improve the customer ordering experience.
+
                     </p>
 
                     <p>
+
                         The system includes features for managing menu items,
                         customer orders, reservations, payments, inventory,
                         promotions, feedback, and customer support.
+
                     </p>
+
                 </div>
 
 
-                <div>
-                    <h2>Technologies Used</h2>
+                <!-- TECHNOLOGIES -->
 
-                    <div class="project-tags">
-                        <span>PHP</span>
-                        <span>MySQL</span>
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                        <span>Database</span>
+                <div>
+
+                    <h2>
+                        Technologies Used
+                    </h2>
+
+                    <div class="tech-list">
+
+                        <span class="tech-tag">
+                            PHP
+                        </span>
+
+                        <span class="tech-tag">
+                            MySQL
+                        </span>
+
+                        <span class="tech-tag">
+                            HTML
+                        </span>
+
+                        <span class="tech-tag">
+                            CSS
+                        </span>
+
+                        <span class="tech-tag">
+                            JavaScript
+                        </span>
+
+                        <span class="tech-tag">
+                            Database
+                        </span>
+
                     </div>
+
                 </div>
 
 
+                <!-- KEY FEATURES -->
+
                 <div>
-                    <h2>Key Features</h2>
+
+                    <h2>
+                        Key Features
+                    </h2>
 
                     <ul>
+
                         <li>
                             Online food ordering and cart management.
                         </li>
@@ -106,37 +1099,930 @@
                         <li>
                             Customer feedback and support management.
                         </li>
+
                     </ul>
+
                 </div>
 
 
+                <!-- MY CONTRIBUTION -->
+
                 <div>
-                    <h2>My Contribution</h2>
+
+                    <h2>
+                        My Contribution
+                    </h2>
 
                     <p>
+
                         Designed and developed the web-based system,
                         implemented database functionality, developed
                         management features, and worked on the user
                         interface and system functionality.
+
                     </p>
+
                 </div>
+
 
             </div>
 
 
-            <a href="index.html#projects" class="back-btn">
+            <!-- =================================================
+                 PROJECT SCREENSHOTS
+            ================================================= -->
+
+            <div class="project-gallery">
+
+                <h2>
+                    Project Screenshots
+                </h2>
+
+
+                <div class="screenshot-carousel">
+
+
+                    <!-- PREVIOUS -->
+
+                    <button
+                        class="carousel-btn prev"
+                        onclick="scrollGallery(-1)"
+                        aria-label="Previous screenshots"
+                    >
+                        &#10094;
+                    </button>
+
+
+                    <!-- SCREENSHOT TRACK -->
+
+                    <div
+                        class="screenshot-track"
+                        id="screenshotTrack"
+                    >
+
+
+                        <!-- SS 1 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-1.png"
+                                alt="Home Page"
+                            >
+
+                            <div class="screenshot-label">
+                                Home Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 2 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-2.png"
+                                alt="About Us Page"
+                            >
+
+                            <div class="screenshot-label">
+                                About Us Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 3 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-3.png"
+                                alt="Contact Us Page"
+                            >
+
+                            <div class="screenshot-label">
+                                Contact Us Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 4 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-4.png"
+                                alt="Login Page"
+                            >
+
+                            <div class="screenshot-label">
+                                Login Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 5 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-5.png"
+                                alt="Forgot Password Page"
+                            >
+
+                            <div class="screenshot-label">
+                                Forgot Password Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 6 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-6.png"
+                                alt="Register Page"
+                            >
+
+                            <div class="screenshot-label">
+                                Register Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 7 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-7.png"
+                                alt="Customer Dashboard"
+                            >
+
+                            <div class="screenshot-label">
+                                Customer Dashboard
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 8 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-8.png"
+                                alt="Customer Profile"
+                            >
+
+                            <div class="screenshot-label">
+                                Customer Profile
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 9 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-9.png"
+                                alt="Company Background Page"
+                            >
+
+                            <div class="screenshot-label">
+                                Company Background Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 10 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-10.png"
+                                alt="Our Menu Page"
+                            >
+
+                            <div class="screenshot-label">
+                                Our Menu Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 11 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-11.png"
+                                alt="Make Reservation Page"
+                            >
+
+                            <div class="screenshot-label">
+                                Make Reservation Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 12 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-12.png"
+                                alt="Add to Cart Page"
+                            >
+
+                            <div class="screenshot-label">
+                                Add to Cart Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 13 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-13.png"
+                                alt="Place Order Page"
+                            >
+
+                            <div class="screenshot-label">
+                                Place Order Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 14 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-14.png"
+                                alt="Order Receipt Page"
+                            >
+
+                            <div class="screenshot-label">
+                                Order Receipt Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 15 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-15.png"
+                                alt="Order Status Page"
+                            >
+
+                            <div class="screenshot-label">
+                                Order Status Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 16 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-16.png"
+                                alt="Promotion Page"
+                            >
+
+                            <div class="screenshot-label">
+                                Promotion Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 17 -->
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="westbourne-images/westbourne-17.png"
+                                alt="Feedback Page"
+                            >
+
+                            <div class="screenshot-label">
+                                Feedback Page
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- NEXT -->
+
+                    <button
+                        class="carousel-btn next"
+                        onclick="scrollGallery(1)"
+                        aria-label="Next screenshots"
+                    >
+                        &#10095;
+                    </button>
+
+
+                </div>
+
+
+                <!-- VIEW ALL -->
+
+                <div class="view-all-container">
+
+                    <button
+    class="view-all-btn"
+    onclick="openAllScreenshots()"
+>
+    View All Screenshots
+</button>
+
+                </div>
+
+            </div>
+
+			<!-- =================================================
+     ALL WESTBOURNE SCREENSHOTS
+================================================= -->
+
+<div
+    class="all-screenshots-modal"
+    id="allScreenshotsModal"
+>
+
+    <div class="all-screenshots-header">
+
+        <h2>
+            All Westbourne Screenshots
+        </h2>
+
+        <button
+            class="all-screenshots-close"
+            onclick="closeAllScreenshots()"
+            aria-label="Close gallery"
+        >
+            &times;
+        </button>
+
+    </div>
+
+
+    <div class="all-screenshots-grid">
+
+
+        <!-- SS 1 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-1.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-1.png"
+                alt="Home Page"
+            >
+
+            <div class="all-screenshot-label">
+                Home Page
+            </div>
+        </div>
+
+
+        <!-- SS 2 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-2.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-2.png"
+                alt="About Us Page"
+            >
+
+            <div class="all-screenshot-label">
+                About Us Page
+            </div>
+        </div>
+
+
+        <!-- SS 3 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-3.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-3.png"
+                alt="Contact Us Page"
+            >
+
+            <div class="all-screenshot-label">
+                Contact Us Page
+            </div>
+        </div>
+
+
+        <!-- SS 4 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-4.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-4.png"
+                alt="Login Page"
+            >
+
+            <div class="all-screenshot-label">
+                Login Page
+            </div>
+        </div>
+
+
+        <!-- SS 5 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-5.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-5.png"
+                alt="Forgot Password Page"
+            >
+
+            <div class="all-screenshot-label">
+                Forgot Password Page
+            </div>
+        </div>
+
+
+        <!-- SS 6 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-6.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-6.png"
+                alt="Register Page"
+            >
+
+            <div class="all-screenshot-label">
+                Register Page
+            </div>
+        </div>
+
+
+        <!-- SS 7 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-7.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-7.png"
+                alt="Customer Dashboard"
+            >
+
+            <div class="all-screenshot-label">
+                Customer Dashboard
+            </div>
+        </div>
+
+
+        <!-- SS 8 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-8.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-8.png"
+                alt="Customer Profile"
+            >
+
+            <div class="all-screenshot-label">
+                Customer Profile
+            </div>
+        </div>
+
+
+        <!-- SS 9 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-9.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-9.png"
+                alt="Company Background Page"
+            >
+
+            <div class="all-screenshot-label">
+                Company Background Page
+            </div>
+        </div>
+
+
+        <!-- SS 10 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-10.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-10.png"
+                alt="Our Menu Page"
+            >
+
+            <div class="all-screenshot-label">
+                Our Menu Page
+            </div>
+        </div>
+
+
+        <!-- SS 11 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-11.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-11.png"
+                alt="Make Reservation Page"
+            >
+
+            <div class="all-screenshot-label">
+                Make Reservation Page
+            </div>
+        </div>
+
+
+        <!-- SS 12 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-12.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-12.png"
+                alt="Add to Cart Page"
+            >
+
+            <div class="all-screenshot-label">
+                Add to Cart Page
+            </div>
+        </div>
+
+
+        <!-- SS 13 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-13.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-13.png"
+                alt="Place Order Page"
+            >
+
+            <div class="all-screenshot-label">
+                Place Order Page
+            </div>
+        </div>
+
+
+        <!-- SS 14 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-14.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-14.png"
+                alt="Order Receipt Page"
+            >
+
+            <div class="all-screenshot-label">
+                Order Receipt Page
+            </div>
+        </div>
+
+
+        <!-- SS 15 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-15.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-15.png"
+                alt="Order Status Page"
+            >
+
+            <div class="all-screenshot-label">
+                Order Status Page
+            </div>
+        </div>
+
+
+        <!-- SS 16 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-16.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-16.png"
+                alt="Promotion Page"
+            >
+
+            <div class="all-screenshot-label">
+                Promotion Page
+            </div>
+        </div>
+
+
+        <!-- SS 17 -->
+        <div
+            class="all-screenshot-card"
+            onclick="openImageFromPath('westbourne-images/westbourne-17.png')"
+        >
+            <img
+                src="westbourne-images/westbourne-17.png"
+                alt="Feedback Page"
+            >
+
+            <div class="all-screenshot-label">
+                Feedback Page
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+            <!-- =================================================
+                 FULLSCREEN IMAGE
+            ================================================= -->
+
+            <div
+                class="image-modal"
+                id="imageModal"
+                onclick="closeImage()"
+            >
+
+                <span
+                    class="close-btn"
+                    onclick="closeImage()"
+                >
+                    &times;
+                </span>
+
+
+                <img
+                    id="modalImage"
+                    alt="Fullscreen Project Screenshot"
+                    onclick="event.stopPropagation()"
+                >
+
+            </div>
+
+
+            <!-- BACK BUTTON -->
+
+            <a
+                href="index.html#projects"
+                class="back-btn"
+            >
                 ← Back to Projects
             </a>
+
 
         </section>
 
     </main>
 
 
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
     <footer>
-        <p>© 2026 Nurfarah Amirah. All Rights Reserved.</p>
-        <p>Built with HTML, CSS & JavaScript.</p>
+
+        <p>
+            © 2026 Nurfarah Amirah. All Rights Reserved.
+        </p>
+
+        <p>
+            Built with HTML, CSS & JavaScript.
+        </p>
+
     </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
+
+    /* =================================================
+       CAROUSEL
+    ================================================= */
+
+    function scrollGallery(direction) {
+
+        const track =
+            document.getElementById("screenshotTrack");
+
+        const scrollAmount = 390;
+
+        track.scrollBy({
+
+            left: direction * scrollAmount,
+
+            behavior: "smooth"
+
+        });
+
+    }
+
+
+    /* =================================================
+       FULLSCREEN
+    ================================================= */
+
+    function openImage(card) {
+
+        const image =
+            card.querySelector("img");
+
+        const modal =
+            document.getElementById("imageModal");
+
+        const modalImage =
+            document.getElementById("modalImage");
+
+        modalImage.src =
+            image.src;
+
+        modal.classList.add("show");
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+
+    function openImageFromPath(path) {
+
+        const modal =
+            document.getElementById("imageModal");
+
+        const modalImage =
+            document.getElementById("modalImage");
+
+        modalImage.src =
+            path;
+
+        modal.classList.add("show");
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+
+    function closeImage() {
+
+        const modal =
+            document.getElementById("imageModal");
+
+        modal.classList.remove("show");
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+
+    /* =================================================
+       VIEW ALL
+       SAME AS NEZUCAT
+    ================================================= */
+
+    function openAllScreenshots() {
+
+        const modal =
+            document.getElementById(
+                "allScreenshotsModal"
+            );
+
+        modal.classList.add("active");
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+
+    function closeAllScreenshots() {
+
+        const modal =
+            document.getElementById(
+                "allScreenshotsModal"
+            );
+
+        modal.classList.remove("active");
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+
+    /* =================================================
+       ESC
+    ================================================= */
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Escape") {
+
+                closeImage();
+
+                closeAllScreenshots();
+
+            }
+
+        }
+    );
+
+</script>
+
 
 </body>
 </html>
