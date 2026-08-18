@@ -5,6 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nurfarah Amirah | Portfolio</title>
     <link rel="stylesheet" href="style.css">
+<style>
+/* ===== HOME PROFILE SPACE ===== */
+#home {
+    position: relative;
+}
+
+#home .hero-profile {
+    position: absolute;
+    left: max(40px, calc(50% - 570px));
+    top:37%;
+    transform: translateY(-50%);
+    width: 210px;
+    height: 210px;
+    z-index: 2;
+}
+
+#home .profile-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 200, 255, 0.85);
+    background:
+        radial-gradient(circle at 50% 38%, rgba(0, 200, 255, 0.18), transparent 34%),
+        linear-gradient(145deg, rgba(15, 31, 58, 0.95), rgba(8, 20, 40, 0.98));
+    box-shadow:
+        0 0 28px rgba(0, 200, 255, 0.16),
+        inset 0 0 28px rgba(0, 200, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#home .profile-placeholder::before {
+    content: "";
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(170, 205, 225, 0.82);
+    position: absolute;
+    top: 48px;
+}
+
+#home .profile-placeholder::after {
+    content: "";
+    width: 105px;
+    height: 58px;
+    border-radius: 60px 60px 20px 20px;
+    background: rgba(170, 205, 225, 0.82);
+    position: absolute;
+    bottom: 38px;
+}
+
+#home .profile-placeholder span {
+    position: absolute;
+    bottom: 14px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(0, 200, 255, 0.75);
+    z-index: 3;
+}
+
+/* Keep the existing hero content in its current position. */
+#home .hero-content {
+    position: relative;
+    z-index: 3;
+}
+
+/* Smaller screens: place the profile above the text instead of overlapping. */
+@media (max-width: 1100px) {
+    #home .hero-profile {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        margin: 0 auto 35px;
+    }
+
+    #home .hero-content {
+        text-align: center;
+    }
+
+    #home .hero-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 700px) {
+    #home .hero-profile {
+        width: 170px;
+        height: 170px;
+    }
+}
+
+#home .profile-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+#home .profile-placeholder::before,
+#home .profile-placeholder::after,
+#home .profile-placeholder span {
+    display: none;
+}
+
+</style>
+
 </head>
 
 <body>
@@ -16,7 +127,7 @@
         </div>
 
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
+            <li><a href="#home" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
@@ -30,6 +141,15 @@
 
     <!-- HOME -->
     <section id="home">
+
+        <!-- PROFILE PHOTO SPACE
+             Later, replace this placeholder with your actual profile image. -->
+        <div class="hero-profile">
+    <div class="profile-placeholder">
+        <img src="profile.png" alt="Nurfarah Amirah Profile">
+    </div>
+</div>
+
         <div class="hero-content">
 
             <p class="hero-greeting">HELLO, I'M</p>
