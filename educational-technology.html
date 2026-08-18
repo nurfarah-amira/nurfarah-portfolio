@@ -1,143 +1,2301 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Educational Technology | Nurfarah Amirah</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        Educational Technology | Nurfarah Amirah
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <style>
+
+        /* =========================================
+           EDUCATIONAL TECHNOLOGY SCREENSHOTS
+           SAME STYLE AS H5P / SMARTAI
+        ========================================= */
+
+        .project-gallery {
+            margin-top: 70px;
+        }
+
+
+        /* =========================================
+           CAROUSEL
+        ========================================= */
+
+        .screenshot-carousel {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            width: 100%;
+        }
+
+
+        .screenshot-track {
+            display: flex;
+
+            gap: 25px;
+
+            width: 100%;
+
+            overflow-x: auto;
+
+            scroll-behavior: smooth;
+
+            scrollbar-width: none;
+
+            padding: 10px 5px 20px;
+        }
+
+        .screenshot-track::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        /* =========================================
+           COURSE CARD
+        ========================================= */
+
+        .course-card {
+
+            flex: 0 0 720px;
+
+            background: #111c31;
+
+            border: 1px solid
+                rgba(8, 191, 255, 0.35);
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            box-sizing: border-box;
+
+            transition: 0.3s ease;
+        }
+
+
+        .course-card:hover {
+
+            border-color: #08bfff;
+
+            box-shadow:
+                0 0 25px
+                rgba(8, 191, 255, 0.15);
+
+            transform: translateY(-3px);
+        }
+
+
+        .course-card h3 {
+
+            color: #ffffff;
+
+            font-size: 18px;
+
+            line-height: 1.4;
+
+            text-align: center;
+
+            margin: 0 0 20px;
+        }
+
+
+        /* =========================================
+           TWO IMAGES INSIDE EACH COURSE
+        ========================================= */
+
+        .course-images {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .screenshot-card {
+
+            position: relative;
+
+            height: 220px;
+
+            overflow: hidden;
+
+            border-radius: 14px;
+
+            border: 1px solid
+                rgba(8, 191, 255, 0.28);
+
+            background: #0d1528;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+
+        .screenshot-card:hover {
+
+            border-color: #08bfff;
+
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 0 20px
+                rgba(8, 191, 255, 0.18);
+        }
+
+
+        .screenshot-card img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: 0.4s ease;
+        }
+
+
+        .screenshot-card:hover img {
+
+            transform: scale(1.04);
+        }
+
+
+        /* =========================================
+           SCREENSHOT LABEL
+        ========================================= */
+
+        .screenshot-label {
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 11px 12px;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(5, 10, 22, 0.95),
+                    rgba(5, 10, 22, 0.55),
+                    transparent
+                );
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            text-align: center;
+
+            padding-top: 35px;
+        }
+
+
+        /* =========================================
+           CAROUSEL ARROWS
+        ========================================= */
+
+        .carousel-btn {
+
+            position: absolute;
+
+            z-index: 5;
+
+            width: 48px;
+            height: 48px;
+
+            border: 1px solid
+                rgba(8, 191, 255, 0.45);
+
+            border-radius: 50%;
+
+            background: #0b1628;
+
+            color: #08bfff;
+
+            font-size: 24px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.35);
+        }
+
+
+        .carousel-btn:hover {
+
+            background: #08bfff;
+
+            color: #0d1528;
+
+            border-color: #08bfff;
+
+            box-shadow:
+                0 0 20px
+                rgba(8, 191, 255, 0.35);
+
+            transform: scale(1.08);
+        }
+
+
+        .carousel-btn.prev {
+            left: -24px;
+        }
+
+
+        .carousel-btn.next {
+            right: -24px;
+        }
+
+
+        /* =========================================
+           VIEW ALL BUTTON
+        ========================================= */
+
+        .view-all-btn {
+
+            display: block;
+
+            margin: 28px auto 0;
+
+            padding: 12px 26px;
+
+            border: 1px solid #08bfff;
+
+            border-radius: 30px;
+
+            background: transparent;
+
+            color: #08bfff;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+
+        .view-all-btn:hover {
+
+            background: #08bfff;
+
+            color: #0d1528;
+
+            box-shadow:
+                0 0 18px
+                rgba(8, 191, 255, 0.35);
+        }
+
+
+        /* =========================================
+           VIEW ALL MODAL
+        ========================================= */
+
+        .all-screenshots-modal {
+
+            display: none;
+
+            position: fixed;
+
+            z-index: 9999;
+
+            inset: 0;
+
+            background:
+                rgba(5, 10, 22, 0.97);
+
+            overflow-y: auto;
+
+            padding: 70px 5%;
+        }
+
+
+        .all-screenshots-modal.active {
+            display: block;
+        }
+
+
+        /* =========================================
+           MODAL HEADER
+        ========================================= */
+
+        .all-screenshots-header {
+
+            max-width: 1200px;
+
+            margin: 0 auto 35px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+
+        .all-screenshots-header h2 {
+
+            margin: 0;
+
+            color: #08bfff;
+
+            font-size: 32px;
+        }
+
+
+        .all-close-btn {
+
+            width: 44px;
+            height: 44px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #09243a;
+
+            color: #08bfff;
+
+            font-size: 28px;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+
+        .all-close-btn:hover {
+
+            background: #08bfff;
+
+            color: #0d1528;
+        }
+
+
+        /* =========================================
+           VIEW ALL COURSE GRID
+        ========================================= */
+
+        .all-courses-grid {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 25px;
+        }
+
+
+        /* =========================================
+           VIEW ALL COURSE CARD
+        ========================================= */
+
+        .all-course-card {
+
+            background: #111c31;
+
+            border: 1px solid
+                rgba(8, 191, 255, 0.35);
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            transition: 0.3s ease;
+        }
+
+
+        .all-course-card:hover {
+
+            border-color: #08bfff;
+
+            box-shadow:
+                0 0 22px
+                rgba(8, 191, 255, 0.15);
+        }
+
+
+        .all-course-card h3 {
+
+            color: #ffffff;
+
+            font-size: 17px;
+
+            line-height: 1.4;
+
+            text-align: center;
+
+            margin: 0 0 18px;
+        }
+
+
+        .all-course-images {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 14px;
+        }
+
+
+        .all-screenshot-card {
+
+            position: relative;
+
+            height: 170px;
+
+            overflow: hidden;
+
+            border-radius: 12px;
+
+            border: 1px solid
+                rgba(8, 191, 255, 0.25);
+
+            background: #0d1528;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+
+        .all-screenshot-card:hover {
+
+            border-color: #08bfff;
+
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 0 18px
+                rgba(8, 191, 255, 0.18);
+        }
+
+
+        .all-screenshot-card img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: 0.4s ease;
+        }
+
+
+        .all-screenshot-card:hover img {
+
+            transform: scale(1.04);
+        }
+
+
+        .all-screenshot-label {
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 10px;
+
+            padding-top: 30px;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(5, 10, 22, 0.95),
+                    rgba(5, 10, 22, 0.55),
+                    transparent
+                );
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            text-align: center;
+        }
+
+
+        /* =========================================
+           FULLSCREEN IMAGE
+        ========================================= */
+
+        .image-modal {
+
+            display: none;
+
+            position: fixed;
+
+            z-index: 10000;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, 0.95);
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 40px;
+        }
+
+
+        .image-modal img {
+
+            max-width: 90%;
+
+            max-height: 90%;
+
+            object-fit: contain;
+
+            border-radius: 12px;
+
+            animation:
+                imageZoom 0.25s ease;
+        }
+
+
+        .close-btn {
+
+            position: absolute;
+
+            top: 25px;
+
+            right: 35px;
+
+            color: #08bfff;
+
+            font-size: 42px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            z-index: 10001;
+
+            transition: 0.2s ease;
+        }
+
+
+        .close-btn:hover {
+
+            transform: scale(1.1);
+
+            color: #ffffff;
+        }
+
+
+        @keyframes imageZoom {
+
+            from {
+
+                transform: scale(0.92);
+
+                opacity: 0;
+            }
+
+            to {
+
+                transform: scale(1);
+
+                opacity: 1;
+            }
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .course-card {
+
+                flex: 0 0 85vw;
+            }
+
+
+            .all-courses-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .course-card {
+
+                flex: 0 0 88vw;
+
+                padding: 18px;
+            }
+
+
+            .course-images {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .screenshot-card {
+
+                height: 200px;
+            }
+
+
+            .carousel-btn {
+
+                width: 40px;
+
+                height: 40px;
+
+                font-size: 19px;
+            }
+
+
+            .carousel-btn.prev {
+
+                left: -10px;
+            }
+
+
+            .carousel-btn.next {
+
+                right: -10px;
+            }
+
+
+            .all-screenshots-modal {
+
+                padding: 50px 18px;
+            }
+
+
+            .all-screenshots-header h2 {
+
+                font-size: 24px;
+            }
+
+
+            .all-course-images {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <header>
-        <nav>
-            <div class="logo">NURFARAH AMIRAH</div>
 
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+
+    <nav>
+
+        <div class="logo">
+
+            <span>NURFARAH</span>
+
+            <strong>AMIRAH</strong>
+
+        </div>
 
 
-    <main>
+        <ul class="nav-links">
 
-        <section class="project-detail">
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
 
-            <p class="section-label">PROJECT DETAILS</p>
+            <li>
+                <a href="index.html#projects">
+                    Projects
+                </a>
+            </li>
 
-            <h1>Educational Technology & Digital Learning</h1>
+            <li>
+                <a href="index.html#contact">
+                    Contact
+                </a>
+            </li>
 
-            <p class="project-detail-intro">
-                A collection of digital learning and educational technology
-                projects developed using interactive content, multimedia,
-                AI tools, and virtual production technologies.
+        </ul>
+
+    </nav>
+
+</header>
+
+
+
+<main>
+
+
+<section class="project-detail">
+
+
+    <p class="section-label">
+        PROJECT DETAILS
+    </p>
+
+
+    <h1>
+        Educational Technology & Digital Learning
+    </h1>
+
+
+    <p class="project-detail-intro">
+
+        A collection of digital learning and educational technology
+        projects developed using interactive content, multimedia,
+        AI tools, and virtual production technologies.
+
+    </p>
+
+
+
+    <!-- =========================================
+         MAIN PROJECT IMAGE
+    ========================================= -->
+
+    <img
+        src="educational-technology.png"
+        alt="Educational Technology Projects"
+        class="project-detail-image"
+    >
+
+
+
+    <!-- =========================================
+         PROJECT INFORMATION
+    ========================================= -->
+
+    <div class="project-detail-content">
+
+
+        <!-- PROJECT OVERVIEW -->
+
+        <div>
+
+            <h2>
+                Project Overview
+            </h2>
+
+
+            <p>
+
+                This project involved developing and producing various
+                digital learning resources during my internship at the
+                Centre of Open and Distance Learning (CODL), UTeM.
+
             </p>
 
 
-            <img
-                src="educational-technology.png"
-                alt="Educational Technology Projects"
-                class="project-detail-image"
+            <p>
+
+                The work covered educational technology, interactive
+                learning content, multimedia production, and virtual
+                production training materials.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- PROJECTS & TECHNOLOGIES -->
+
+        <div>
+
+            <h2>
+                Projects & Technologies
+            </h2>
+
+
+            <div class="tech-list">
+
+                <span class="tech-tag">
+                    Articulate Rise
+                </span>
+
+                <span class="tech-tag">
+                    H5P
+                </span>
+
+                <span class="tech-tag">
+                    Colossyan AI
+                </span>
+
+                <span class="tech-tag">
+                    Rokoko Studio
+                </span>
+
+                <span class="tech-tag">
+                    SimLab
+                </span>
+
+                <span class="tech-tag">
+                    Virtual Production
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MY CONTRIBUTION -->
+
+        <div>
+
+            <h2>
+                My Contribution
+            </h2>
+
+
+            <ul>
+
+                <li>
+                    Created user manuals and learning materials
+                    for Articulate Rise.
+                </li>
+
+                <li>
+                    Developed interactive H5P learning content
+                    for digital learning.
+                </li>
+
+                <li>
+                    Produced and edited educational multimedia
+                    resources and tutorial videos.
+                </li>
+
+                <li>
+                    Worked with Rokoko Studio, SimLab, and
+                    Virtual Production technologies.
+                </li>
+
+                <li>
+                    Explored AI-based tools such as Colossyan AI
+                    for educational content creation.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+
+        <!-- KEY LEARNING -->
+
+        <div>
+
+            <h2>
+                Key Learning
+            </h2>
+
+
+            <p>
+
+                This experience strengthened my skills in digital
+                content development, multimedia production,
+                interactive learning design, and emerging
+                educational technologies.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =========================================
+         PROJECT SCREENSHOTS
+    ========================================= -->
+
+    <div class="project-gallery">
+
+
+        <h2>
+            Project Screenshots
+        </h2>
+
+
+
+        <div class="screenshot-carousel">
+
+
+            <!-- LEFT ARROW -->
+
+            <button
+                class="carousel-btn prev"
+                onclick="scrollGallery(-1)"
+                aria-label="Previous course"
+            >
+                &#10094;
+            </button>
+
+
+
+            <!-- CAROUSEL TRACK -->
+
+            <div
+                class="screenshot-track"
+                id="screenshotTrack"
             >
 
 
-            <div class="project-detail-content">
+                <!-- =================================
+                     COURSE 1
+                ================================= -->
 
-                <div>
-                    <h2>Project Overview</h2>
+                <div class="course-card">
 
-                    <p>
-                        This project involved developing and producing various
-                        digital learning resources during my internship at the
-                        Centre of Open and Distance Learning (CODL), UTeM.
-                    </p>
-
-                    <p>
-                        The work covered educational technology, interactive
-                        learning content, multimedia production, and virtual
-                        production training materials.
-                    </p>
-                </div>
+                    <h3>
+                        AI Video Content Creation for
+                        Microlearning using Colossyan AI
+                    </h3>
 
 
-                <div>
-                    <h2>Projects & Technologies</h2>
+                    <div class="course-images">
 
-                    <div class="project-tags">
-                        <span>Articulate Rise</span>
-                        <span>H5P</span>
-                        <span>Colossyan AI</span>
-                        <span>Rokoko Studio</span>
-                        <span>SimLab</span>
-                        <span>Virtual Production</span>
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-1.png"
+                                alt="Colossyan AI Thumbnail"
+                            >
+
+                            <div class="screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-2.png"
+                                alt="Colossyan AI Editing Process"
+                            >
+
+                            <div class="screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+
                     </div>
+
                 </div>
 
 
-                <div>
-                    <h2>My Contribution</h2>
 
-                    <ul>
-                        <li>
-                            Created user manuals and learning materials
-                            for Articulate Rise.
-                        </li>
+                <!-- =================================
+                     COURSE 2
+                ================================= -->
 
-                        <li>
-                            Developed interactive H5P learning content
-                            for digital learning.
-                        </li>
+                <div class="course-card">
 
-                        <li>
-                            Produced and edited educational multimedia
-                            resources and tutorial videos.
-                        </li>
+                    <h3>
+                        Interactive Authoring for Higher
+                        Education with Articulate Rise
+                    </h3>
 
-                        <li>
-                            Worked with Rokoko Studio, SimLab, and
-                            Virtual Production technologies.
-                        </li>
 
-                        <li>
-                            Explored AI-based tools such as Colossyan AI
-                            for educational content creation.
-                        </li>
-                    </ul>
+                    <div class="course-images">
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-3.png"
+                                alt="Articulate Rise Thumbnail"
+                            >
+
+                            <div class="screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-4.png"
+                                alt="Articulate Rise Editing Process"
+                            >
+
+                            <div class="screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
                 </div>
 
 
-                <div>
-                    <h2>Key Learning</h2>
 
-                    <p>
-                        This experience strengthened my skills in digital
-                        content development, multimedia production,
-                        interactive learning design, and emerging
-                        educational technologies.
-                    </p>
+                <!-- =================================
+                     COURSE 3
+                ================================= -->
+
+                <div class="course-card">
+
+                    <h3>
+                        Virtual Production
+                    </h3>
+
+
+                    <div class="course-images">
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-5.png"
+                                alt="Virtual Production Thumbnail"
+                            >
+
+                            <div class="screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-6.png"
+                                alt="Virtual Production Editing Process"
+                            >
+
+                            <div class="screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
                 </div>
+
+
+
+                <!-- =================================
+                     COURSE 4
+                ================================= -->
+
+                <div class="course-card">
+
+                    <h3>
+                        Smart Demo Classroom –
+                        eLearningMinds Sdn. Bhd.
+                    </h3>
+
+
+                    <div class="course-images">
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-7.png"
+                                alt="eLearningMinds Thumbnail"
+                            >
+
+                            <div class="screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-8.png"
+                                alt="eLearningMinds Editing Process"
+                            >
+
+                            <div class="screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     COURSE 5
+                ================================= -->
+
+                <div class="course-card">
+
+                    <h3>
+                        Smart Demo Classroom –
+                        E-One Technology Sdn. Bhd.
+                    </h3>
+
+
+                    <div class="course-images">
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-9.png"
+                                alt="E-One Technology Thumbnail"
+                            >
+
+                            <div class="screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-10.png"
+                                alt="E-One Technology Editing Process"
+                            >
+
+                            <div class="screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     COURSE 6
+                ================================= -->
+
+                <div class="course-card">
+
+                    <h3>
+                        Smart Demo Classroom –
+                        Dantronics Sdn. Bhd.
+                    </h3>
+
+
+                    <div class="course-images">
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-11.png"
+                                alt="Dantronics Thumbnail"
+                            >
+
+                            <div class="screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-12.png"
+                                alt="Dantronics Editing Process"
+                            >
+
+                            <div class="screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     COURSE 7
+                ================================= -->
+
+                <div class="course-card">
+
+                    <h3>
+                        Smart Demo Classroom –
+                        Cemerlang Niaga Enterprise
+                    </h3>
+
+
+                    <div class="course-images">
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-13.png"
+                                alt="Cemerlang Niaga Thumbnail"
+                            >
+
+                            <div class="screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-14.png"
+                                alt="Cemerlang Niaga Editing Process"
+                            >
+
+                            <div class="screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     COURSE 8
+                ================================= -->
+
+                <div class="course-card">
+
+                    <h3>
+                        SimLab
+                    </h3>
+
+
+                    <div class="course-images">
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-15.png"
+                                alt="SimLab Thumbnail"
+                            >
+
+                            <div class="screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-16.png"
+                                alt="SimLab Editing Process"
+                            >
+
+                            <div class="screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================
+                     COURSE 9
+                ================================= -->
+
+                <div class="course-card">
+
+                    <h3>
+                        Rokoko Studio
+                    </h3>
+
+
+                    <div class="course-images">
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-17.png"
+                                alt="Rokoko Studio Thumbnail"
+                            >
+
+                            <div class="screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="screenshot-card"
+                            onclick="openImage(this)"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-18.png"
+                                alt="Rokoko Studio Editing Process"
+                            >
+
+                            <div class="screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
 
             </div>
 
 
-            <a href="index.html#projects" class="back-btn">
-                ← Back to Projects
-            </a>
 
-        </section>
+            <!-- RIGHT ARROW -->
 
-    </main>
+            <button
+                class="carousel-btn next"
+                onclick="scrollGallery(1)"
+                aria-label="Next course"
+            >
+                &#10095;
+            </button>
 
 
-    <footer>
-        <p>© 2026 Nurfarah Amirah. All Rights Reserved.</p>
-        <p>Built with HTML, CSS & JavaScript.</p>
-    </footer>
+        </div>
+
+
+
+        <!-- =========================================
+             VIEW ALL
+        ========================================= -->
+
+        <button
+            class="view-all-btn"
+            onclick="openAllScreenshots()"
+        >
+            View All Screenshots
+        </button>
+
+
+
+        <!-- =========================================
+             VIEW ALL MODAL
+        ========================================= -->
+
+        <div
+            class="all-screenshots-modal"
+            id="allScreenshotsModal"
+        >
+
+
+            <div class="all-screenshots-header">
+
+                <h2>
+                    All Educational Technology Projects
+                </h2>
+
+
+                <button
+                    class="all-close-btn"
+                    onclick="closeAllScreenshots()"
+                >
+                    &times;
+                </button>
+
+            </div>
+
+
+
+            <div class="all-courses-grid">
+
+
+                <!-- COURSE 1 -->
+
+                <div class="all-course-card">
+
+                    <h3>
+                        AI Video Content Creation for
+                        Microlearning using Colossyan AI
+                    </h3>
+
+
+                    <div class="all-course-images">
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-1.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-1.png"
+                                alt="Colossyan AI Thumbnail"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-2.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-2.png"
+                                alt="Colossyan AI Editing Process"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- COURSE 2 -->
+
+                <div class="all-course-card">
+
+                    <h3>
+                        Interactive Authoring for Higher
+                        Education with Articulate Rise
+                    </h3>
+
+
+                    <div class="all-course-images">
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-3.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-3.png"
+                                alt="Articulate Rise Thumbnail"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-4.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-4.png"
+                                alt="Articulate Rise Editing Process"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- COURSE 3 -->
+
+                <div class="all-course-card">
+
+                    <h3>
+                        Virtual Production
+                    </h3>
+
+
+                    <div class="all-course-images">
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-5.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-5.png"
+                                alt="Virtual Production Thumbnail"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-6.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-6.png"
+                                alt="Virtual Production Editing Process"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- COURSE 4 -->
+
+                <div class="all-course-card">
+
+                    <h3>
+                        Smart Demo Classroom –
+                        eLearningMinds Sdn. Bhd.
+                    </h3>
+
+
+                    <div class="all-course-images">
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-7.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-7.png"
+                                alt="eLearningMinds Thumbnail"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-8.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-8.png"
+                                alt="eLearningMinds Editing Process"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- COURSE 5 -->
+
+                <div class="all-course-card">
+
+                    <h3>
+                        Smart Demo Classroom –
+                        E-One Technology Sdn. Bhd.
+                    </h3>
+
+
+                    <div class="all-course-images">
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-9.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-9.png"
+                                alt="E-One Technology Thumbnail"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-10.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-10.png"
+                                alt="E-One Technology Editing Process"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- COURSE 6 -->
+
+                <div class="all-course-card">
+
+                    <h3>
+                        Smart Demo Classroom –
+                        Dantronics Sdn. Bhd.
+                    </h3>
+
+
+                    <div class="all-course-images">
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-11.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-11.png"
+                                alt="Dantronics Thumbnail"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-12.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-12.png"
+                                alt="Dantronics Editing Process"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- COURSE 7 -->
+
+                <div class="all-course-card">
+
+                    <h3>
+                        Smart Demo Classroom –
+                        Cemerlang Niaga Enterprise
+                    </h3>
+
+
+                    <div class="all-course-images">
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-13.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-13.png"
+                                alt="Cemerlang Niaga Thumbnail"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-14.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-14.png"
+                                alt="Cemerlang Niaga Editing Process"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- COURSE 8 -->
+
+                <div class="all-course-card">
+
+                    <h3>
+                        SimLab
+                    </h3>
+
+
+                    <div class="all-course-images">
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-15.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-15.png"
+                                alt="SimLab Thumbnail"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-16.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-16.png"
+                                alt="SimLab Editing Process"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- COURSE 9 -->
+
+                <div class="all-course-card">
+
+                    <h3>
+                        Rokoko Studio
+                    </h3>
+
+
+                    <div class="all-course-images">
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-17.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-17.png"
+                                alt="Rokoko Studio Thumbnail"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Thumbnail
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath(
+                                'edutech-images/edutech-18.png'
+                            )"
+                        >
+
+                            <img
+                                src="edutech-images/edutech-18.png"
+                                alt="Rokoko Studio Editing Process"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Editing Process
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             FULLSCREEN IMAGE
+        ========================================= -->
+
+        <div
+            class="image-modal"
+            id="imageModal"
+            onclick="closeImage()"
+        >
+
+            <span
+                class="close-btn"
+                onclick="closeImage()"
+            >
+                &times;
+            </span>
+
+
+            <img
+                id="modalImage"
+                alt="Fullscreen Project Screenshot"
+                onclick="event.stopPropagation()"
+            >
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- BACK BUTTON -->
+
+    <a
+        href="index.html#projects"
+        class="back-btn"
+    >
+        ← Back to Projects
+    </a>
+
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+    <p>
+        © 2026 Nurfarah Amirah. All Rights Reserved.
+    </p>
+
+    <p>
+        Built with HTML, CSS & JavaScript.
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================================
+   CAROUSEL
+========================================= */
+
+function scrollGallery(direction) {
+
+    const track =
+        document.getElementById(
+            "screenshotTrack"
+        );
+
+
+    track.scrollBy({
+
+        left: direction * 745,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+
+/* =========================================
+   OPEN IMAGE FROM CAROUSEL
+========================================= */
+
+function openImage(card) {
+
+    const image =
+        card.querySelector("img");
+
+
+    const modal =
+        document.getElementById(
+            "imageModal"
+        );
+
+
+    const modalImage =
+        document.getElementById(
+            "modalImage"
+        );
+
+
+    modalImage.src =
+        image.src;
+
+
+    modal.style.display =
+        "flex";
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+
+/* =========================================
+   OPEN IMAGE FROM VIEW ALL
+========================================= */
+
+function openImageFromPath(path) {
+
+    const modal =
+        document.getElementById(
+            "imageModal"
+        );
+
+
+    const modalImage =
+        document.getElementById(
+            "modalImage"
+        );
+
+
+    modalImage.src =
+        path;
+
+
+    modal.style.display =
+        "flex";
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+
+/* =========================================
+   CLOSE FULLSCREEN
+========================================= */
+
+function closeImage() {
+
+    const modal =
+        document.getElementById(
+            "imageModal"
+        );
+
+
+    modal.style.display =
+        "none";
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+
+/* =========================================
+   VIEW ALL
+========================================= */
+
+function openAllScreenshots() {
+
+    document
+        .getElementById(
+            "allScreenshotsModal"
+        )
+        .classList.add("active");
+
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+
+function closeAllScreenshots() {
+
+    document
+        .getElementById(
+            "allScreenshotsModal"
+        )
+        .classList.remove("active");
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+
+/* =========================================
+   ESC KEY
+========================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            closeImage();
+
+            closeAllScreenshots();
+
+        }
+
+    }
+);
+
+</script>
+
 
 </body>
+
 </html>
