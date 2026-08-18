@@ -1,43 +1,766 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Nezucat Hotel Management System | Nurfarah Amirah</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        Nezucat Hotel Management System | Nurfarah Amirah
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <style>
+
+        /* =========================================
+           NEZUCAT PROJECT SCREENSHOTS
+           SAME STRUCTURE / SIZE AS SMARTAI
+        ========================================= */
+
+        .project-screenshots {
+            margin-top: 70px;
+        }
+
+
+        .project-screenshots h2 {
+            margin-bottom: 42px;
+        }
+
+
+        /* =========================================
+           CAROUSEL WRAPPER
+        ========================================= */
+
+        .screenshot-carousel {
+            position: relative;
+
+            width: 100%;
+
+            overflow: visible;
+        }
+
+
+        /* =========================================
+           SCREENSHOT WINDOW
+        ========================================= */
+
+        .screenshot-window {
+            width: 100%;
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+
+        /* =========================================
+           SCREENSHOT TRACK
+        ========================================= */
+
+        .screenshot-track {
+
+            display: flex;
+
+            gap: 24px;
+
+            width: max-content;
+
+            transition:
+                transform 0.5s ease;
+        }
+
+
+        /* =========================================
+           SCREENSHOT CARD
+           SAME SIZE AS SMARTAI
+        ========================================= */
+
+        .screenshot-card {
+
+            flex: 0 0 365px;
+
+            width: 365px;
+
+            height: 232px;
+
+            box-sizing: border-box;
+
+            position: relative;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            background: #111c31;
+
+            border: 1px solid #08bfff;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+
+        .screenshot-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 10px 30px
+                rgba(8, 191, 255, 0.15);
+        }
+
+
+        /* =========================================
+           IMAGE
+        ========================================= */
+
+        .screenshot-card img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition:
+                transform 0.4s ease;
+        }
+
+
+        .screenshot-card:hover img {
+
+            transform:
+                scale(1.05);
+        }
+
+
+        /* =========================================
+           SCREENSHOT LABEL
+           KEEP NEZUCAT LABEL
+        ========================================= */
+
+        .screenshot-label {
+
+            position: absolute;
+
+            left: 0;
+
+            right: 0;
+
+            bottom: 0;
+
+            padding: 14px 16px;
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(0, 0, 0, 0.82)
+                );
+
+            opacity: 0;
+
+            transform:
+                translateY(10px);
+
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
+        }
+
+
+        .screenshot-card:hover
+        .screenshot-label {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =========================================
+           CAROUSEL ARROWS
+           SAME STYLE AS SMARTAI
+        ========================================= */
+
+        .carousel-arrow {
+
+            position: absolute;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            width: 42px;
+
+            height: 42px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #062b45;
+
+            color: #00c8ff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            z-index: 10;
+
+            transition:
+                background 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s ease;
+        }
+
+
+        .carousel-arrow:hover {
+
+            background: #00bfff;
+
+            color: #071426;
+
+            transform:
+                translateY(-50%)
+                scale(1.08);
+        }
+
+
+        .carousel-arrow.left {
+
+            left: -25px;
+        }
+
+
+        .carousel-arrow.right {
+
+            right: -25px;
+        }
+
+
+        /* =========================================
+           VIEW ALL
+           SAME POSITION AS SMARTAI
+        ========================================= */
+
+        .view-all-container {
+
+            display: flex;
+
+            justify-content: center;
+
+            margin-top: 48px;
+        }
+
+
+        .view-all-btn {
+
+            display: inline-block;
+
+            padding: 13px 30px;
+
+            border: 1px solid #00c8ff;
+
+            border-radius: 30px;
+
+            color: #00c8ff;
+
+            background: transparent;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            text-decoration: none;
+
+            transition:
+                all 0.3s ease;
+        }
+
+
+        .view-all-btn:hover {
+
+            background: #00c8ff;
+
+            color: #071426;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 200, 255, 0.2);
+        }
+
+
+        /* =========================================
+           FULLSCREEN IMAGE
+        ========================================= */
+
+        .image-modal {
+
+            display: none;
+
+            position: fixed;
+
+            z-index: 10000;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, 0.95);
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 40px;
+        }
+
+
+        .image-modal.show {
+
+            display: flex;
+        }
+
+
+        .image-modal img {
+
+            max-width: 90%;
+
+            max-height: 90%;
+
+            object-fit: contain;
+
+            border-radius: 12px;
+        }
+
+
+        .close-btn {
+
+            position: absolute;
+
+            top: 25px;
+
+            right: 35px;
+
+            color: #08bfff;
+
+            font-size: 42px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            z-index: 10001;
+        }
+
+
+
+        /* =========================================
+           VIEW ALL MODAL
+           SAME STYLE AS SMARTAI
+        ========================================= */
+
+        .all-screenshots-modal {
+
+            display: none;
+
+            position: fixed;
+
+            z-index: 9999;
+
+            inset: 0;
+
+            background:
+                rgba(5, 10, 22, 0.96);
+
+            overflow-y: auto;
+
+            padding:
+                70px 5%;
+        }
+
+
+        .all-screenshots-modal.active {
+
+            display: block;
+        }
+
+
+        /* SmartAI modal has no inner panel.
+           Keep NezuCat's existing HTML wrapper,
+           but make it visually transparent. */
+
+        .all-screenshots-content {
+
+            display: contents;
+        }
+
+
+        .all-screenshots-header {
+
+            max-width: 1200px;
+
+            margin:
+                0 auto 35px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+
+        .all-screenshots-header h2 {
+
+            margin: 0;
+
+            color: #08bfff;
+
+            font-size: 32px;
+        }
+
+
+        .all-screenshots-close {
+
+            width: 44px;
+
+            height: 44px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #09243a;
+
+            color: #08bfff;
+
+            font-size: 28px;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+
+        .all-screenshots-close:hover {
+
+            background: #08bfff;
+
+            color: #0d1528;
+        }
+
+
+        /* =========================================
+           ALL SCREENSHOTS GRID
+           SAME STYLE AS SMARTAI
+        ========================================= */
+
+        .all-screenshots-grid {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 24px;
+        }
+
+
+        .all-screenshot-card {
+
+            background: #111c31;
+
+            border: 1px solid
+                rgba(8, 191, 255, 0.35);
+
+            border-radius: 18px;
+
+            padding: 12px;
+
+            overflow: hidden;
+
+            cursor: pointer;
+
+            transition: 0.3s ease;
+        }
+
+
+        .all-screenshot-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            border-color:
+                #08bfff;
+
+            box-shadow:
+                0 0 22px
+                rgba(8, 191, 255, 0.18);
+        }
+
+
+        .all-screenshot-card img {
+
+            width: 100%;
+
+            height: 190px;
+
+            object-fit: cover;
+
+            display: block;
+
+            border-radius: 12px;
+        }
+
+
+        .all-screenshot-label {
+
+            padding:
+                12px 5px 5px;
+
+            color: #ffffff;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            text-align: center;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+           SAME MODAL BREAKPOINTS AS SMARTAI
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .all-screenshots-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .all-screenshots-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .all-screenshots-modal {
+
+                padding:
+                    50px 20px;
+            }
+
+
+            .all-screenshots-header h2 {
+
+                font-size: 24px;
+            }
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .screenshot-card {
+
+                flex: 0 0 330px;
+
+                width: 330px;
+
+                height: 210px;
+            }
+
+
+            .carousel-arrow.left {
+
+                left: -18px;
+            }
+
+
+            .carousel-arrow.right {
+
+                right: -18px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .screenshot-card {
+
+                flex: 0 0 290px;
+
+                width: 290px;
+
+                height: 185px;
+            }
+
+
+            .screenshot-track {
+
+                gap: 18px;
+            }
+
+
+            .carousel-arrow {
+
+                width: 38px;
+
+                height: 38px;
+
+                font-size: 25px;
+            }
+
+
+            .carousel-arrow.left {
+
+                left: -10px;
+            }
+
+
+            .carousel-arrow.right {
+
+                right: -10px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
+
+    <!-- =========================================
+         HEADER
+    ========================================= -->
+
     <header>
+
         <nav>
-            <div class="logo">NURFARAH AMIRAH</div>
+
+            <div class="logo">
+
+                <span>NURFARAH</span>
+
+                <strong>AMIRAH</strong>
+
+            </div>
+
 
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#projects">
+                        Projects
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html#contact">
+                        Contact
+                    </a>
+                </li>
+
             </ul>
+
         </nav>
+
     </header>
 
+
+    <!-- =========================================
+         MAIN
+    ========================================= -->
 
     <main>
 
         <section class="project-detail">
 
-            <p class="section-label">PROJECT DETAILS</p>
 
-            <h1>Nezucat Hotel Management System</h1>
-
-            <p class="project-detail-intro">
-                A web-based cat hotel management system designed to support
-                customer registration, cat profiles, room booking,
-                reservations, and hotel services.
+            <p class="section-label">
+                PROJECT DETAILS
             </p>
 
+
+            <h1>
+                Nezucat Hotel Management System
+            </h1>
+
+
+            <p class="project-detail-intro">
+
+                A web-based cat hotel management system designed
+                to support customer registration, cat profiles,
+                room booking, reservations, and hotel services.
+
+            </p>
+
+
+            <!-- =========================================
+                 MAIN PROJECT IMAGE
+            ========================================= -->
 
             <img
                 src="nezucat.png"
@@ -46,44 +769,96 @@
             >
 
 
+            <!-- =========================================
+                 PROJECT CONTENT
+            ========================================= -->
+
             <div class="project-detail-content">
 
+
+                <!-- PROJECT OVERVIEW -->
+
                 <div>
-                    <h2>Project Overview</h2>
+
+                    <h2>
+                        Project Overview
+                    </h2>
+
 
                     <p>
-                        Nezucat Hotel Management System was developed as a
-                        web-based system for managing a cat hotel and boarding
-                        service.
+
+                        Nezucat Hotel Management System was developed
+                        as a web-based system for managing a cat hotel
+                        and boarding service.
+
                     </p>
 
+
                     <p>
-                        The system provides features for managing customers,
-                        cats, rooms, bookings, reservations, services, and
-                        payment-related information.
+
+                        The system provides features for managing
+                        customers, cats, rooms, bookings, reservations,
+                        services, and payment-related information.
+
                     </p>
+
                 </div>
 
 
-                <div>
-                    <h2>Technologies Used</h2>
+                <!-- TECHNOLOGIES -->
 
-                    <div class="project-tags">
-                        <span>PHP</span>
-                        <span>MySQL</span>
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>JavaScript</span>
-                        <span>Database</span>
+                <div>
+
+                    <h2>
+                        Technologies Used
+                    </h2>
+
+
+                    <div class="tech-list">
+
+                        <span class="tech-tag">
+                            PHP
+                        </span>
+
+                        <span class="tech-tag">
+                            MySQL
+                        </span>
+
+                        <span class="tech-tag">
+                            HTML
+                        </span>
+
+                        <span class="tech-tag">
+                            CSS
+                        </span>
+
+                        <span class="tech-tag">
+                            JavaScript
+                        </span>
+
+                        <span class="tech-tag">
+                            Database
+                        </span>
+
                     </div>
+
                 </div>
 
 
+                <!-- KEY FEATURES -->
+
                 <div>
-                    <h2>Key Features</h2>
+
+                    <h2>
+                        Key Features
+                    </h2>
+
 
                     <ul>
-                        <li>Customer registration and management.</li>
+
+                        <li>
+                            Customer registration and management.
+                        </li>
 
                         <li>
                             Cat profile and pet information management.
@@ -100,37 +875,1162 @@
                         <li>
                             Booking and payment information management.
                         </li>
+
                     </ul>
+
                 </div>
 
 
+                <!-- MY CONTRIBUTION -->
+
                 <div>
-                    <h2>My Contribution</h2>
+
+                    <h2>
+                        My Contribution
+                    </h2>
+
 
                     <p>
+
                         Designed and developed the web-based system,
-                        implemented database functionality, created user
-                        interface components, and integrated the main
-                        management features.
+                        implemented database functionality, created
+                        user interface components, and integrated
+                        the main management features.
+
                     </p>
+
                 </div>
 
             </div>
 
 
-            <a href="index.html#projects" class="back-btn">
+            <!-- =========================================
+                 PROJECT SCREENSHOTS
+            ========================================= -->
+
+            <div class="project-screenshots">
+
+
+                <h2>
+                    Project Screenshots
+                </h2>
+
+
+                <div class="screenshot-carousel">
+
+
+                    <!-- LEFT ARROW -->
+
+                    <button
+                        class="carousel-arrow left"
+                        onclick="moveNezuCat(-1)"
+                        aria-label="Previous screenshot"
+                    >
+                        ‹
+                    </button>
+
+
+                    <!-- SCREENSHOT WINDOW -->
+
+                    <div class="screenshot-window">
+
+
+                        <div
+                            class="screenshot-track"
+                            id="nezucatTrack"
+                        >
+
+
+                            <!-- SS 1 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-0.png"
+                                    alt="Home Page"
+                                >
+
+                                <div class="screenshot-label">
+                                    Home Page
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 2 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-1.png"
+                                    alt="About Us"
+                                >
+
+                                <div class="screenshot-label">
+                                    About Us
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 3 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-2.png"
+                                    alt="Room Packages"
+                                >
+
+                                <div class="screenshot-label">
+                                    Room Packages
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 4 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-3.png"
+                                    alt="Grooming Services"
+                                >
+
+                                <div class="screenshot-label">
+                                    Grooming Services
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 5 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-4.png"
+                                    alt="Hotel Pricing Update"
+                                >
+
+                                <div class="screenshot-label">
+                                    Hotel Pricing Update
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 6 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-5.png"
+                                    alt="Cat Breed Information"
+                                >
+
+                                <div class="screenshot-label">
+                                    Cat Breed Information
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 7 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-6.png"
+                                    alt="Contact Us Page"
+                                >
+
+                                <div class="screenshot-label">
+                                    Contact Us Page
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 8 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-7.png"
+                                    alt="Login Role Selection Page"
+                                >
+
+                                <div class="screenshot-label">
+                                    Login / Role Selection Page
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 9 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-8.png"
+                                    alt="Login Page"
+                                >
+
+                                <div class="screenshot-label">
+                                    Login Page
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 10 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-9.png"
+                                    alt="Customer Registration Page"
+                                >
+
+                                <div class="screenshot-label">
+                                    Customer Registration Page
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 11 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-10.png"
+                                    alt="Reset Password Page"
+                                >
+
+                                <div class="screenshot-label">
+                                    Reset Password Page
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 12 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-11.png"
+                                    alt="Customer Dashboard Room Types"
+                                >
+
+                                <div class="screenshot-label">
+                                    Customer Dashboard – Room Types
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 13 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-12.png"
+                                    alt="Customer Dashboard Service Packages"
+                                >
+
+                                <div class="screenshot-label">
+                                    Customer Dashboard – Service Packages
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 14 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-13.png"
+                                    alt="Customer Dashboard Add-On Services"
+                                >
+
+                                <div class="screenshot-label">
+                                    Customer Dashboard – Add-On Services
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 15 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-14.png"
+                                    alt="Customer Profile"
+                                >
+
+                                <div class="screenshot-label">
+                                    Customer Profile
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 16 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-15.png"
+                                    alt="Change Password"
+                                >
+
+                                <div class="screenshot-label">
+                                    Change Password
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 17 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-16.png"
+                                    alt="Cat Profile Page"
+                                >
+
+                                <div class="screenshot-label">
+                                    Cat Profile Page
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 18 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-17.png"
+                                    alt="Make a Booking Room and Cat Selection"
+                                >
+
+                                <div class="screenshot-label">
+                                    Make a Booking – Room & Cat Selection
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 19 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-18.png"
+                                    alt="Make a Booking Service Add-Ons Summary"
+                                >
+
+                                <div class="screenshot-label">
+                                    Make a Booking – Service, Add-Ons & Summary
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 20 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-19.png"
+                                    alt="Booking Confirmation Page"
+                                >
+
+                                <div class="screenshot-label">
+                                    Booking Confirmation Page
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 21 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-20.png"
+                                    alt="Make Payment Page"
+                                >
+
+                                <div class="screenshot-label">
+                                    Make Payment Page
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 22 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-21.png"
+                                    alt="Payment Receipt Page"
+                                >
+
+                                <div class="screenshot-label">
+                                    Payment Receipt Page
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 23 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-22.png"
+                                    alt="Print Payment Receipt"
+                                >
+
+                                <div class="screenshot-label">
+                                    Print Payment Receipt
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 24 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-23.png"
+                                    alt="Payment Receipt PDF"
+                                >
+
+                                <div class="screenshot-label">
+                                    Payment Receipt PDF
+                                </div>
+
+                            </div>
+
+
+                            <!-- SS 25 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="nezucat-images/nezucat-24.png"
+                                    alt="Customer My Bookings Interface"
+                                >
+
+                                <div class="screenshot-label">
+                                    Customer My Bookings Interface
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RIGHT ARROW -->
+
+                    <button
+                        class="carousel-arrow right"
+                        onclick="moveNezuCat(1)"
+                        aria-label="Next screenshot"
+                    >
+                        ›
+                    </button>
+
+                </div>
+
+
+                <!-- =========================================
+                     VIEW ALL
+                ========================================= -->
+
+                <div class="view-all-container">
+
+                    <button
+                        class="view-all-btn"
+                        onclick="openAllScreenshots()"
+                    >
+                        View All Screenshots
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =========================================
+                 ALL SCREENSHOTS MODAL
+            ========================================= -->
+
+            <div
+                class="all-screenshots-modal"
+                id="allScreenshotsModal"
+            >
+
+                <div class="all-screenshots-content">
+
+
+                    <div class="all-screenshots-header">
+
+                        <h2>
+                            All NezuCat Screenshots
+                        </h2>
+
+
+                        <button
+                            class="all-screenshots-close"
+                            onclick="closeAllScreenshots()"
+                        >
+                            &times;
+                        </button>
+
+                    </div>
+
+
+                    <div class="all-screenshots-grid">
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-0.png')"
+                        >
+                            <img src="nezucat-images/nezucat-0.png">
+                            <div class="all-screenshot-label">
+                                Home Page
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-1.png')"
+                        >
+                            <img src="nezucat-images/nezucat-1.png">
+                            <div class="all-screenshot-label">
+                                About Us
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-2.png')"
+                        >
+                            <img src="nezucat-images/nezucat-2.png">
+                            <div class="all-screenshot-label">
+                                Room Packages
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-3.png')"
+                        >
+                            <img src="nezucat-images/nezucat-3.png">
+                            <div class="all-screenshot-label">
+                                Grooming Services
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-4.png')"
+                        >
+                            <img src="nezucat-images/nezucat-4.png">
+                            <div class="all-screenshot-label">
+                                Hotel Pricing Update
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-5.png')"
+                        >
+                            <img src="nezucat-images/nezucat-5.png">
+                            <div class="all-screenshot-label">
+                                Cat Breed Information
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-6.png')"
+                        >
+                            <img src="nezucat-images/nezucat-6.png">
+                            <div class="all-screenshot-label">
+                                Contact Us Page
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-7.png')"
+                        >
+                            <img src="nezucat-images/nezucat-7.png">
+                            <div class="all-screenshot-label">
+                                Login / Role Selection Page
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-8.png')"
+                        >
+                            <img src="nezucat-images/nezucat-8.png">
+                            <div class="all-screenshot-label">
+                                Login Page
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-9.png')"
+                        >
+                            <img src="nezucat-images/nezucat-9.png">
+                            <div class="all-screenshot-label">
+                                Customer Registration Page
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-10.png')"
+                        >
+                            <img src="nezucat-images/nezucat-10.png">
+                            <div class="all-screenshot-label">
+                                Reset Password Page
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-11.png')"
+                        >
+                            <img src="nezucat-images/nezucat-11.png">
+                            <div class="all-screenshot-label">
+                                Customer Dashboard – Room Types
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-12.png')"
+                        >
+                            <img src="nezucat-images/nezucat-12.png">
+                            <div class="all-screenshot-label">
+                                Customer Dashboard – Service Packages
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-13.png')"
+                        >
+                            <img src="nezucat-images/nezucat-13.png">
+                            <div class="all-screenshot-label">
+                                Customer Dashboard – Add-On Services
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-14.png')"
+                        >
+                            <img src="nezucat-images/nezucat-14.png">
+                            <div class="all-screenshot-label">
+                                Customer Profile
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-15.png')"
+                        >
+                            <img src="nezucat-images/nezucat-15.png">
+                            <div class="all-screenshot-label">
+                                Change Password
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-16.png')"
+                        >
+                            <img src="nezucat-images/nezucat-16.png">
+                            <div class="all-screenshot-label">
+                                Cat Profile Page
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-17.png')"
+                        >
+                            <img src="nezucat-images/nezucat-17.png">
+                            <div class="all-screenshot-label">
+                                Make a Booking – Room & Cat Selection
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-18.png')"
+                        >
+                            <img src="nezucat-images/nezucat-18.png">
+                            <div class="all-screenshot-label">
+                                Make a Booking – Service, Add-Ons & Summary
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-19.png')"
+                        >
+                            <img src="nezucat-images/nezucat-19.png">
+                            <div class="all-screenshot-label">
+                                Booking Confirmation Page
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-20.png')"
+                        >
+                            <img src="nezucat-images/nezucat-20.png">
+                            <div class="all-screenshot-label">
+                                Make Payment Page
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-21.png')"
+                        >
+                            <img src="nezucat-images/nezucat-21.png">
+                            <div class="all-screenshot-label">
+                                Payment Receipt Page
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-22.png')"
+                        >
+                            <img src="nezucat-images/nezucat-22.png">
+                            <div class="all-screenshot-label">
+                                Print Payment Receipt
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-23.png')"
+                        >
+                            <img src="nezucat-images/nezucat-23.png">
+                            <div class="all-screenshot-label">
+                                Payment Receipt PDF
+                            </div>
+                        </div>
+
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('nezucat-images/nezucat-24.png')"
+                        >
+                            <img src="nezucat-images/nezucat-24.png">
+                            <div class="all-screenshot-label">
+                                Customer My Bookings Interface
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 FULLSCREEN IMAGE
+            ========================================= -->
+
+            <div
+                class="image-modal"
+                id="imageModal"
+                onclick="closeImage()"
+            >
+
+                <span
+                    class="close-btn"
+                    onclick="closeImage()"
+                >
+                    &times;
+                </span>
+
+
+                <img
+                    id="modalImage"
+                    alt="Fullscreen Project Screenshot"
+                    onclick="event.stopPropagation()"
+                >
+
+            </div>
+
+
+            <!-- BACK -->
+
+            <a
+                href="index.html#projects"
+                class="back-btn"
+            >
                 ← Back to Projects
             </a>
+
 
         </section>
 
     </main>
 
 
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
     <footer>
-        <p>© 2026 Nurfarah Amirah. All Rights Reserved.</p>
-        <p>Built with HTML, CSS & JavaScript.</p>
+
+        <p>
+            © 2026 Nurfarah Amirah. All Rights Reserved.
+        </p>
+
+        <p>
+            Built with HTML, CSS & JavaScript.
+        </p>
+
     </footer>
 
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+
+        let nezucatIndex = 0;
+
+
+        function moveNezuCat(direction) {
+
+            const track =
+                document.getElementById(
+                    "nezucatTrack"
+                );
+
+
+            const cards =
+                track.querySelectorAll(
+                    ".screenshot-card"
+                );
+
+
+            const cardWidth = 365;
+
+            const gap = 24;
+
+            const step =
+                cardWidth + gap;
+
+
+            const maxIndex =
+                cards.length - 1;
+
+
+            nezucatIndex += direction;
+
+
+            if (nezucatIndex < 0) {
+
+                nezucatIndex = 0;
+
+            }
+
+
+            if (nezucatIndex > maxIndex) {
+
+                nezucatIndex =
+                    maxIndex;
+
+            }
+
+
+            track.style.transform =
+                `translateX(-${nezucatIndex * step}px)`;
+
+        }
+
+
+
+        /* =========================================
+           FULLSCREEN
+        ========================================= */
+
+        function openImage(card) {
+
+            const image =
+                card.querySelector("img");
+
+
+            const modal =
+                document.getElementById(
+                    "imageModal"
+                );
+
+
+            const modalImage =
+                document.getElementById(
+                    "modalImage"
+                );
+
+
+            modalImage.src =
+                image.src;
+
+
+            modal.classList.add("show");
+
+
+            document.body.style.overflow =
+                "hidden";
+
+        }
+
+
+
+        function openImageFromPath(path) {
+
+            const modal =
+                document.getElementById(
+                    "imageModal"
+                );
+
+
+            const modalImage =
+                document.getElementById(
+                    "modalImage"
+                );
+
+
+            modalImage.src =
+                path;
+
+
+            modal.classList.add("show");
+
+
+            document.body.style.overflow =
+                "hidden";
+
+        }
+
+
+
+        function closeImage() {
+
+            const modal =
+                document.getElementById(
+                    "imageModal"
+                );
+
+
+            modal.classList.remove("show");
+
+
+            document.body.style.overflow =
+                "";
+
+        }
+
+
+
+        /* =========================================
+           VIEW ALL
+        ========================================= */
+
+        function openAllScreenshots() {
+
+            const modal =
+                document.getElementById(
+                    "allScreenshotsModal"
+                );
+
+
+            modal.classList.add("active");
+
+
+            document.body.style.overflow =
+                "hidden";
+
+        }
+
+
+
+        function closeAllScreenshots() {
+
+            const modal =
+                document.getElementById(
+                    "allScreenshotsModal"
+                );
+
+
+            modal.classList.remove("active");
+
+
+            document.body.style.overflow =
+                "";
+
+        }
+
+
+
+        /* =========================================
+           ESC KEY
+        ========================================= */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    closeImage();
+
+                    closeAllScreenshots();
+
+                }
+
+            }
+        );
+
+    </script>
+
+
 </body>
+
 </html>
