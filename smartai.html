@@ -1,116 +1,1854 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SmartAI | Nurfarah Amirah</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        SmartAI | Nurfarah Amirah
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+    <style>
+
+        /* =========================================
+           SMARTAI PROJECT SCREENSHOTS
+           SAME STYLE AS NEZUCAT
+        ========================================= */
+
+        .project-screenshots {
+
+            margin-top: 70px;
+
+        }
+
+
+        .project-screenshots h2 {
+
+            margin-bottom: 42px;
+
+        }
+
+
+        /* =========================================
+           CAROUSEL WRAPPER
+        ========================================= */
+
+        .screenshot-carousel {
+
+            position: relative;
+
+            width: 100%;
+
+            overflow: visible;
+
+        }
+
+
+        /* =========================================
+           SCREENSHOT WINDOW
+        ========================================= */
+
+        .screenshot-window {
+
+            width: 100%;
+
+            overflow: hidden;
+
+            position: relative;
+
+        }
+
+
+        /* =========================================
+           SCREENSHOT TRACK
+        ========================================= */
+
+        .screenshot-track {
+
+            display: flex;
+
+            gap: 24px;
+
+            width: max-content;
+
+            transition:
+                transform 0.5s ease;
+
+        }
+
+
+        /* =========================================
+           SCREENSHOT CARD
+           SAME SIZE AS NEZUCAT
+        ========================================= */
+
+        .screenshot-card {
+
+            flex:
+                0 0 365px;
+
+            width: 365px;
+
+            height: 232px;
+
+            box-sizing: border-box;
+
+            position: relative;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            background: #111c31;
+
+            border: 1px solid #08bfff;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .screenshot-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 10px 30px
+                rgba(8, 191, 255, 0.15);
+
+        }
+
+
+        /* =========================================
+           IMAGE
+        ========================================= */
+
+        .screenshot-card img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition:
+                transform 0.4s ease;
+
+        }
+
+
+        .screenshot-card:hover img {
+
+            transform:
+                scale(1.05);
+
+        }
+
+
+        /* =========================================
+           CAROUSEL ARROWS
+           SAME AS NEZUCAT
+        ========================================= */
+
+        .carousel-arrow {
+
+            position: absolute;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            width: 42px;
+
+            height: 42px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: #062b45;
+
+            color: #00c8ff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 30px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            z-index: 10;
+
+            transition:
+                background 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s ease;
+
+        }
+
+
+        .carousel-arrow:hover {
+
+            background: #00bfff;
+
+            color: #071426;
+
+            transform:
+                translateY(-50%)
+                scale(1.08);
+
+        }
+
+
+        .carousel-arrow.left {
+
+            left: -25px;
+
+        }
+
+
+        .carousel-arrow.right {
+
+            right: -25px;
+
+        }
+
+
+        /* =========================================
+           VIEW ALL BUTTON
+        ========================================= */
+
+        .view-all-container {
+
+            display: flex;
+
+            justify-content: center;
+
+            margin-top: 48px;
+
+        }
+
+
+        .view-all-btn {
+
+            display: inline-block;
+
+            padding:
+                13px 30px;
+
+            border:
+                1px solid #00c8ff;
+
+            border-radius:
+                30px;
+
+            color:
+                #00c8ff;
+
+            background:
+                transparent;
+
+            font-size:
+                16px;
+
+            font-weight:
+                600;
+
+            text-decoration:
+                none;
+
+            cursor:
+                pointer;
+
+            transition:
+                all 0.3s ease;
+
+        }
+
+
+        .view-all-btn:hover {
+
+            background:
+                #00c8ff;
+
+            color:
+                #071426;
+
+            box-shadow:
+                0 8px 25px
+                rgba(0, 200, 255, 0.2);
+
+        }
+
+
+        /* =========================================
+           FULLSCREEN IMAGE
+        ========================================= */
+
+        .image-modal {
+
+            display: none;
+
+            position: fixed;
+
+            z-index: 10000;
+
+            inset: 0;
+
+            background:
+                rgba(0, 0, 0, 0.95);
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+
+            padding:
+                40px;
+
+        }
+
+
+        .image-modal.show {
+
+            display: flex;
+
+        }
+
+
+        .image-modal img {
+
+            max-width:
+                90%;
+
+            max-height:
+                90%;
+
+            object-fit:
+                contain;
+
+            border-radius:
+                12px;
+
+        }
+
+
+        .close-btn {
+
+            position:
+                absolute;
+
+            top:
+                25px;
+
+            right:
+                35px;
+
+            color:
+                #08bfff;
+
+            font-size:
+                42px;
+
+            font-weight:
+                bold;
+
+            cursor:
+                pointer;
+
+            z-index:
+                10001;
+
+        }
+
+
+        /* =========================================
+           VIEW ALL MODAL
+           SAME AS NEZUCAT
+        ========================================= */
+
+        .all-screenshots-modal {
+
+            display:
+                none;
+
+            position:
+                fixed;
+
+            z-index:
+                9999;
+
+            inset:
+                0;
+
+            background:
+                rgba(5, 10, 22, 0.96);
+
+            overflow-y:
+                auto;
+
+            padding:
+                70px 5%;
+
+        }
+
+
+        .all-screenshots-modal.active {
+
+            display:
+                block;
+
+        }
+
+
+        .all-screenshots-content {
+
+            display:
+                contents;
+
+        }
+
+
+        /* =========================================
+           MODAL HEADER
+        ========================================= */
+
+        .all-screenshots-header {
+
+            max-width:
+                1200px;
+
+            margin:
+                0 auto 35px;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+        }
+
+
+        .all-screenshots-header h2 {
+
+            margin:
+                0;
+
+            color:
+                #08bfff;
+
+            font-size:
+                32px;
+
+        }
+
+
+        .all-screenshots-close {
+
+            width:
+                44px;
+
+            height:
+                44px;
+
+            border:
+                none;
+
+            border-radius:
+                50%;
+
+            background:
+                #09243a;
+
+            color:
+                #08bfff;
+
+            font-size:
+                28px;
+
+            cursor:
+                pointer;
+
+            transition:
+                0.3s ease;
+
+        }
+
+
+        .all-screenshots-close:hover {
+
+            background:
+                #08bfff;
+
+            color:
+                #0d1528;
+
+        }
+
+
+        /* =========================================
+           ALL SCREENSHOTS GRID
+        ========================================= */
+
+        .all-screenshots-grid {
+
+            max-width:
+                1200px;
+
+            margin:
+                auto;
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                24px;
+
+        }
+
+
+        .all-screenshot-card {
+
+            background:
+                #111c31;
+
+            border:
+                1px solid
+                rgba(8, 191, 255, 0.35);
+
+            border-radius:
+                18px;
+
+            padding:
+                12px;
+
+            overflow:
+                hidden;
+
+            cursor:
+                pointer;
+
+            transition:
+                0.3s ease;
+
+        }
+
+
+        .all-screenshot-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            border-color:
+                #08bfff;
+
+            box-shadow:
+                0 0 22px
+                rgba(8, 191, 255, 0.18);
+
+        }
+
+
+        .all-screenshot-card img {
+
+            width:
+                100%;
+
+            height:
+                190px;
+
+            object-fit:
+                cover;
+
+            display:
+                block;
+
+            border-radius:
+                12px;
+
+        }
+
+
+        .all-screenshot-label {
+
+            padding:
+                12px 5px 5px;
+
+            color:
+                #ffffff;
+
+            font-size:
+                14px;
+
+            font-weight:
+                600;
+
+            text-align:
+                center;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .screenshot-card {
+
+                flex:
+                    0 0 330px;
+
+                width:
+                    330px;
+
+                height:
+                    210px;
+
+            }
+
+
+            .carousel-arrow.left {
+
+                left:
+                    -18px;
+
+            }
+
+
+            .carousel-arrow.right {
+
+                right:
+                    -18px;
+
+            }
+
+
+            .all-screenshots-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .screenshot-card {
+
+                flex:
+                    0 0 290px;
+
+                width:
+                    290px;
+
+                height:
+                    185px;
+
+            }
+
+
+            .screenshot-track {
+
+                gap:
+                    18px;
+
+            }
+
+
+            .carousel-arrow {
+
+                width:
+                    38px;
+
+                height:
+                    38px;
+
+                font-size:
+                    25px;
+
+            }
+
+
+            .carousel-arrow.left {
+
+                left:
+                    -10px;
+
+            }
+
+
+            .carousel-arrow.right {
+
+                right:
+                    -10px;
+
+            }
+
+
+            .all-screenshots-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+
+            .all-screenshots-modal {
+
+                padding:
+                    50px 20px;
+
+            }
+
+
+            .all-screenshots-header h2 {
+
+                font-size:
+                    24px;
+
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
+
+    <!-- =========================================
+         HEADER
+    ========================================= -->
+
     <header>
+
         <nav>
-            <div class="logo">NURFARAH AMIRAH</div>
+
+            <div class="logo">
+
+                <span>NURFARAH</span>
+
+                <strong>AMIRAH</strong>
+
+            </div>
+
 
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+
+                <li>
+
+                    <a href="index.html">
+                        Home
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="index.html#projects">
+                        Projects
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="index.html#contact">
+                        Contact
+                    </a>
+
+                </li>
+
             </ul>
+
         </nav>
+
     </header>
 
+
+    <!-- =========================================
+         MAIN
+    ========================================= -->
 
     <main>
 
         <section class="project-detail">
 
-            <p class="section-label">PROJECT DETAILS</p>
 
-            <h1>SmartAI – AI-Powered Course Generator</h1>
+            <p class="section-label">
+                PROJECT DETAILS
+            </p>
+
+
+            <h1>
+                SmartAI – AI-Powered Course Generator
+            </h1>
+
 
             <p class="project-detail-intro">
+
                 An AI-powered web application designed to generate
-                structured e-learning courses from uploaded learning materials.
+                structured e-learning courses from uploaded learning
+                materials.
+
             </p>
-            
+
+
+            <!-- =========================================
+                 MAIN PROJECT IMAGE
+            ========================================= -->
+
             <img
                 src="smartai.png"
                 alt="SmartAI AI-Powered Course Generator"
                 class="project-detail-image"
             >
 
-            <div class="project-gallery">
 
-                <img src="smartai-dashboard.png" alt="SmartAI Dashboard">
-                <img src="smartai-generate.png" alt="SmartAI Course Generation">
-                <img src="smartai-course.png" alt="SmartAI Generated Course">
-
-            </div>
-
+            <!-- =========================================
+                 PROJECT CONTENT
+            ========================================= -->
 
             <div class="project-detail-content">
 
+
+                <!-- PROJECT OVERVIEW -->
+
                 <div>
-                    <h2>Project Overview</h2>
+
+                    <h2>
+                        Project Overview
+                    </h2>
+
 
                     <p>
-                        SmartAI is a web-based application developed during
-                        my internship at the Centre of Open and Distance
-                        Learning (CODL), UTeM.
+
+                        SmartAI is an AI-powered course generator
+                        designed to assist users in creating structured
+                        educational content using artificial intelligence.
+
                     </p>
 
+
                     <p>
-                        The system allows users to upload learning materials
-                        and generate structured course content using
-                        artificial intelligence.
+
+                        The system allows users to upload learning
+                        materials, generate structured course content,
+                        create lesson materials, and manage generated
+                        courses through a web-based platform.
+
                     </p>
+
                 </div>
 
 
+                <!-- TECHNOLOGIES -->
+
                 <div>
-                    <h2>Technologies Used</h2>
+
+                    <h2>
+                        Technologies Used
+                    </h2>
+
 
                     <div class="project-tags">
-                        <span>PHP</span>
-                        <span>MySQL</span>
-                        <span>JavaScript</span>
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>AI</span>
+
+                        <span>
+                            PHP
+                        </span>
+
+                        <span>
+                            MySQL
+                        </span>
+
+                        <span>
+                            JavaScript
+                        </span>
+
+                        <span>
+                            HTML
+                        </span>
+
+                        <span>
+                            CSS
+                        </span>
+
+                        <span>
+                            AI
+                        </span>
+
                     </div>
+
                 </div>
 
 
+                <!-- KEY FEATURES -->
+
                 <div>
-                    <h2>My Contribution</h2>
+
+                    <h2>
+                        Key Features
+                    </h2>
+
 
                     <ul>
-                        <li>Developed web application features.</li>
-                        <li>Worked with database integration.</li>
-                        <li>Implemented AI-powered course generation.</li>
-                        <li>Designed user interface components.</li>
+
+                        <li>
+                            AI-powered course content generation.
+                        </li>
+
+                        <li>
+                            Upload learning materials for AI processing.
+                        </li>
+
+                        <li>
+                            Generate structured course modules.
+                        </li>
+
+                        <li>
+                            Generate lesson content using AI.
+                        </li>
+
+                        <li>
+                            Manage generated courses.
+                        </li>
+
+                        <li>
+                            View generated course content.
+                        </li>
+
+                        <li>
+                            Generate and download course documents.
+                        </li>
+
                     </ul>
+
+                </div>
+
+
+                <!-- MY CONTRIBUTION -->
+
+                <div>
+
+                    <h2>
+                        My Contribution
+                    </h2>
+
+
+                    <p>
+
+                        Developed web features, implemented database
+                        integration, worked on AI-powered course generation,
+                        designed user interface components, and integrated
+                        the main management features of the system.
+
+                    </p>
+
                 </div>
 
             </div>
 
-            <a href="index.html#projects" class="back-btn">
+
+            <!-- =========================================
+                 PROJECT SCREENSHOTS
+            ========================================= -->
+
+            <div class="project-screenshots">
+
+
+                <h2>
+                    Project Screenshots
+                </h2>
+
+
+                <div class="screenshot-carousel">
+
+
+                    <!-- LEFT ARROW -->
+
+                    <button
+                        class="carousel-arrow left"
+                        onclick="moveSmartAI(-1)"
+                        aria-label="Previous screenshot"
+                    >
+                        ‹
+                    </button>
+
+
+                    <!-- SCREENSHOT WINDOW -->
+
+                    <div class="screenshot-window">
+
+
+                        <div
+                            class="screenshot-track"
+                            id="smartaiTrack"
+                        >
+
+
+                            <!-- SS 1 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="smartai-images/smartai-1.png"
+                                    alt="SmartAI Home Page"
+                                >
+
+                            </div>
+
+
+                            <!-- SS 2 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="smartai-images/smartai-2.png"
+                                    alt="SmartAI Create Account Page"
+                                >
+
+                            </div>
+
+
+                            <!-- SS 3 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="smartai-images/smartai-3.png"
+                                    alt="SmartAI Login Page"
+                                >
+
+                            </div>
+
+
+                            <!-- SS 4 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="smartai-images/smartai-4.png"
+                                    alt="SmartAI Forgot Password Page"
+                                >
+
+                            </div>
+
+
+                            <!-- SS 5 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="smartai-images/smartai-5.png"
+                                    alt="SmartAI Reset Password Page"
+                                >
+
+                            </div>
+
+
+                            <!-- SS 6 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="smartai-images/smartai-6.png"
+                                    alt="SmartAI Dashboard Page"
+                                >
+
+                            </div>
+
+
+                            <!-- SS 7 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="smartai-images/smartai-7.png"
+                                    alt="SmartAI Generate Course Page"
+                                >
+
+                            </div>
+
+
+                            <!-- SS 8 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="smartai-images/smartai-8.png"
+                                    alt="SmartAI AI Course Structure Page"
+                                >
+
+                            </div>
+
+
+                            <!-- SS 9 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="smartai-images/smartai-9.png"
+                                    alt="SmartAI AI Lesson Content Page"
+                                >
+
+                            </div>
+
+
+                            <!-- SS 10 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="smartai-images/smartai-10.png"
+                                    alt="SmartAI My Courses Page"
+                                >
+
+                            </div>
+
+
+                            <!-- SS 11 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="smartai-images/smartai-11.png"
+                                    alt="SmartAI View Course Page"
+                                >
+
+                            </div>
+
+
+                            <!-- SS 12 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="smartai-images/smartai-12.png"
+                                    alt="SmartAI Profile Page"
+                                >
+
+                            </div>
+
+
+                            <!-- SS 13 -->
+
+                            <div
+                                class="screenshot-card"
+                                onclick="openImage(this)"
+                            >
+
+                                <img
+                                    src="smartai-images/smartai-13.png"
+                                    alt="SmartAI Generated Course PDF"
+                                >
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RIGHT ARROW -->
+
+                    <button
+                        class="carousel-arrow right"
+                        onclick="moveSmartAI(1)"
+                        aria-label="Next screenshot"
+                    >
+                        ›
+                    </button>
+
+                </div>
+
+
+                <!-- =========================================
+                     VIEW ALL BUTTON
+                ========================================= -->
+
+                <div class="view-all-container">
+
+                    <button
+                        class="view-all-btn"
+                        onclick="openAllScreenshots()"
+                    >
+                        View All Screenshots
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =========================================
+                 ALL SCREENSHOTS MODAL
+            ========================================= -->
+
+            <div
+                class="all-screenshots-modal"
+                id="allScreenshotsModal"
+            >
+
+                <div class="all-screenshots-content">
+
+
+                    <div class="all-screenshots-header">
+
+                        <h2>
+                            All SmartAI Screenshots
+                        </h2>
+
+
+                        <button
+                            class="all-screenshots-close"
+                            onclick="closeAllScreenshots()"
+                        >
+                            &times;
+                        </button>
+
+                    </div>
+
+
+                    <div class="all-screenshots-grid">
+
+
+                        <!-- SS 1 -->
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('smartai-images/smartai-1.png')"
+                        >
+
+                            <img
+                                src="smartai-images/smartai-1.png"
+                                alt="SmartAI Home Page"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Home Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 2 -->
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('smartai-images/smartai-2.png')"
+                        >
+
+                            <img
+                                src="smartai-images/smartai-2.png"
+                                alt="SmartAI Create Account Page"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Create Account Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 3 -->
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('smartai-images/smartai-3.png')"
+                        >
+
+                            <img
+                                src="smartai-images/smartai-3.png"
+                                alt="SmartAI Login Page"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Login Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 4 -->
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('smartai-images/smartai-4.png')"
+                        >
+
+                            <img
+                                src="smartai-images/smartai-4.png"
+                                alt="SmartAI Forgot Password Page"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Forgot Password Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 5 -->
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('smartai-images/smartai-5.png')"
+                        >
+
+                            <img
+                                src="smartai-images/smartai-5.png"
+                                alt="SmartAI Reset Password Page"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Reset Password Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 6 -->
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('smartai-images/smartai-6.png')"
+                        >
+
+                            <img
+                                src="smartai-images/smartai-6.png"
+                                alt="SmartAI Dashboard Page"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Dashboard Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 7 -->
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('smartai-images/smartai-7.png')"
+                        >
+
+                            <img
+                                src="smartai-images/smartai-7.png"
+                                alt="SmartAI Generate Course Page"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Generate Course Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 8 -->
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('smartai-images/smartai-8.png')"
+                        >
+
+                            <img
+                                src="smartai-images/smartai-8.png"
+                                alt="SmartAI AI Course Structure Page"
+                            >
+
+                            <div class="all-screenshot-label">
+                                AI Course Structure Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 9 -->
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('smartai-images/smartai-9.png')"
+                        >
+
+                            <img
+                                src="smartai-images/smartai-9.png"
+                                alt="SmartAI AI Lesson Content Page"
+                            >
+
+                            <div class="all-screenshot-label">
+                                AI Lesson Content Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 10 -->
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('smartai-images/smartai-10.png')"
+                        >
+
+                            <img
+                                src="smartai-images/smartai-10.png"
+                                alt="SmartAI My Courses Page"
+                            >
+
+                            <div class="all-screenshot-label">
+                                My Courses Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 11 -->
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('smartai-images/smartai-11.png')"
+                        >
+
+                            <img
+                                src="smartai-images/smartai-11.png"
+                                alt="SmartAI View Course Page"
+                            >
+
+                            <div class="all-screenshot-label">
+                                View Course Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 12 -->
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('smartai-images/smartai-12.png')"
+                        >
+
+                            <img
+                                src="smartai-images/smartai-12.png"
+                                alt="SmartAI Profile Page"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Profile Page
+                            </div>
+
+                        </div>
+
+
+                        <!-- SS 13 -->
+
+                        <div
+                            class="all-screenshot-card"
+                            onclick="openImageFromPath('smartai-images/smartai-13.png')"
+                        >
+
+                            <img
+                                src="smartai-images/smartai-13.png"
+                                alt="SmartAI Generated Course PDF"
+                            >
+
+                            <div class="all-screenshot-label">
+                                Generated Course PDF
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================================
+                 FULLSCREEN IMAGE
+            ========================================= -->
+
+            <div
+                class="image-modal"
+                id="imageModal"
+                onclick="closeImage()"
+            >
+
+                <span
+                    class="close-btn"
+                    onclick="closeImage()"
+                >
+                    &times;
+                </span>
+
+
+                <img
+                    id="modalImage"
+                    alt="Fullscreen SmartAI Screenshot"
+                    onclick="event.stopPropagation()"
+                >
+
+            </div>
+
+
+            <!-- =========================================
+                 BACK BUTTON
+            ========================================= -->
+
+            <a
+                href="index.html#projects"
+                class="back-btn"
+            >
                 ← Back to Projects
             </a>
+
 
         </section>
 
     </main>
 
 
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
     <footer>
-        <p>© 2026 Nurfarah Amirah. All Rights Reserved.</p>
-        <p>Built with HTML, CSS & JavaScript.</p>
+
+        <p>
+            © 2026 Nurfarah Amirah.
+            All Rights Reserved.
+        </p>
+
+        <p>
+            Built with HTML, CSS & JavaScript.
+        </p>
+
     </footer>
 
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+
+        /* =========================================
+           CAROUSEL
+        ========================================= */
+
+        let smartaiIndex = 0;
+
+
+        function moveSmartAI(direction) {
+
+            const track =
+                document.getElementById(
+                    "smartaiTrack"
+                );
+
+
+            const cards =
+                track.querySelectorAll(
+                    ".screenshot-card"
+                );
+
+
+            const cardWidth =
+                365;
+
+
+            const gap =
+                24;
+
+
+            const step =
+                cardWidth + gap;
+
+
+            const maxIndex =
+                cards.length - 1;
+
+
+            smartaiIndex +=
+                direction;
+
+
+            if (smartaiIndex < 0) {
+
+                smartaiIndex =
+                    0;
+
+            }
+
+
+            if (smartaiIndex > maxIndex) {
+
+                smartaiIndex =
+                    maxIndex;
+
+            }
+
+
+            track.style.transform =
+                `translateX(-${smartaiIndex * step}px)`;
+
+        }
+
+
+
+        /* =========================================
+           FULLSCREEN FROM CAROUSEL
+        ========================================= */
+
+        function openImage(card) {
+
+            const image =
+                card.querySelector(
+                    "img"
+                );
+
+
+            const modal =
+                document.getElementById(
+                    "imageModal"
+                );
+
+
+            const modalImage =
+                document.getElementById(
+                    "modalImage"
+                );
+
+
+            modalImage.src =
+                image.src;
+
+
+            modal.classList.add(
+                "show"
+            );
+
+
+            document.body.style.overflow =
+                "hidden";
+
+        }
+
+
+
+        /* =========================================
+           FULLSCREEN FROM VIEW ALL
+        ========================================= */
+
+        function openImageFromPath(path) {
+
+            const modal =
+                document.getElementById(
+                    "imageModal"
+                );
+
+
+            const modalImage =
+                document.getElementById(
+                    "modalImage"
+                );
+
+
+            modalImage.src =
+                path;
+
+
+            modal.classList.add(
+                "show"
+            );
+
+
+            document.body.style.overflow =
+                "hidden";
+
+        }
+
+
+
+        /* =========================================
+           CLOSE FULLSCREEN
+        ========================================= */
+
+        function closeImage() {
+
+            const modal =
+                document.getElementById(
+                    "imageModal"
+                );
+
+
+            modal.classList.remove(
+                "show"
+            );
+
+
+            document.body.style.overflow =
+                "";
+
+        }
+
+
+
+        /* =========================================
+           OPEN VIEW ALL
+        ========================================= */
+
+        function openAllScreenshots() {
+
+            const modal =
+                document.getElementById(
+                    "allScreenshotsModal"
+                );
+
+
+            modal.classList.add(
+                "active"
+            );
+
+
+            document.body.style.overflow =
+                "hidden";
+
+        }
+
+
+
+        /* =========================================
+           CLOSE VIEW ALL
+        ========================================= */
+
+        function closeAllScreenshots() {
+
+            const modal =
+                document.getElementById(
+                    "allScreenshotsModal"
+                );
+
+
+            modal.classList.remove(
+                "active"
+            );
+
+
+            document.body.style.overflow =
+                "";
+
+        }
+
+
+
+        /* =========================================
+           ESC KEY
+        ========================================= */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key ===
+                    "Escape"
+                ) {
+
+                    closeImage();
+
+                    closeAllScreenshots();
+
+                }
+
+            }
+        );
+
+    </script>
+
+
 </body>
+
 </html>
